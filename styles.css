@@ -292,31 +292,40 @@ h2 {
 .reveal-mask > span { display: block; transform: translateY(110%); transition: transform 950ms var(--ease); }
 .reveal-mask.visible > span { transform: none; }
 
-/* ============ Marquee ============ */
-.marquee {
-  overflow: hidden; display: flex;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+/* ============ Trusted-by marquee (logos) ============ */
+.trust-v2 {
+  margin: 70px 0 20px;
+  padding: 20px 0 10px;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
-.marquee-track {
-  display: flex; flex-shrink: 0; align-items: center;
-  gap: clamp(40px, 5vw, 90px); padding-right: clamp(40px, 5vw, 90px);
-  animation: marquee 46s linear infinite; will-change: transform;
+.trust-v2-label {
+  text-align: center;
+  font-family: 'Geist', -apple-system, system-ui, sans-serif;
+  font-size: 13px; font-weight: 400; letter-spacing: 0.01em;
+  color: rgba(0,0,0,0.5); margin-bottom: 26px;
 }
-.marquee:hover .marquee-track { animation-play-state: paused; }
-.marquee.reverse .marquee-track { animation-direction: reverse; animation-duration: 60s; }
-@keyframes marquee { to { transform: translateX(-100%); } }
-.marquee .client {
-  font-family: var(--font-sans); font-size: clamp(15px, 1.4vw, 19px);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--taupe);
-  font-weight: 600; white-space: nowrap; display: flex; align-items: center;
-  gap: clamp(40px, 5vw, 90px); transition: color var(--t-med); opacity: .75;
+.trust-v2-marquee {
+  width: 100%; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
-.marquee .client:hover { color: var(--navy); opacity: 1; }
-.marquee .client:after { content: "■"; color: var(--red); font-size: 7px; }
-.trust-label {
-  text-align: center; font-size: 11.5px; letter-spacing: .3em; font-weight: 700;
-  text-transform: uppercase; color: var(--taupe); margin-bottom: 34px;
+.trust-v2-track {
+  display: flex; align-items: center; gap: 64px; width: max-content;
+  animation: trustV2Scroll 55s linear infinite;
+}
+.trust-v2-track img {
+  height: 54px; width: auto; flex: none;
+  filter: invert(1);          /* white PNGs -> solid black */
+  opacity: 0.55; transition: opacity .3s ease;
+  border-radius: 0; background: transparent; border: 0; box-shadow: none; object-fit: contain;
+}
+.trust-v2-track img:hover { opacity: 0.85; }
+.trust-v2:hover .trust-v2-track { animation-play-state: paused; }
+@keyframes trustV2Scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
 /* ============ Cards ============ */
