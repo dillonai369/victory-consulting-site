@@ -364,8 +364,8 @@ section:not(.bg-card):not(.bg-deep) .card { background: var(--cloud); border-col
   border-left: 3px solid var(--red);
   padding: 18px 24px; margin: 22px 0;
 }
-.callout-key h3 { color: #fff; font-weight: 700; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
-.callout-key p { color: #fff; font-size: 15.5px; line-height: 1.55; margin: 0; }
+.callout-key h3, .split .callout-key h3 { color: #fff; font-weight: 700; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
+.callout-key p, .split .callout-key p { color: #fff; font-size: 15.5px; line-height: 1.55; margin: 0; }
 
 /* ============ Split ============ */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
@@ -495,6 +495,20 @@ textarea { min-height: 140px; resize: vertical; }
 .split-wide.pad2x > .container,
 .container.wide.pad2x { padding-left: calc(var(--edge) * 2); padding-right: calc(var(--edge) * 2); }
 
+/* ---- Section side-padding presets (desktop target px, scales down on narrow screens) ---- */
+/* Page-wide default via body class; hero is always excluded */
+body.pad150 section:not(.hero-video-wrap) > .container,
+body.pad200 section:not(.hero-video-wrap) > .container,
+body.pad250 section:not(.hero-video-wrap) > .container { max-width: none; margin: 0; }
+body.pad150 section:not(.hero-video-wrap) > .container { padding-left: clamp(20px,10.4vw,150px); padding-right: clamp(20px,10.4vw,150px); }
+body.pad200 section:not(.hero-video-wrap) > .container { padding-left: clamp(24px,13.9vw,200px); padding-right: clamp(24px,13.9vw,200px); }
+body.pad250 section:not(.hero-video-wrap) > .container { padding-left: clamp(24px,17.4vw,250px); padding-right: clamp(24px,17.4vw,250px); }
+/* Per-section overrides (used on home) — placed after body rules to win on equal specificity */
+body.pad150 section.px250 > .container { padding-left: clamp(24px,17.4vw,250px); padding-right: clamp(24px,17.4vw,250px); }
+body.pad150 section.px300 > .container { padding-left: clamp(28px,20.8vw,300px); padding-right: clamp(28px,20.8vw,300px); }
+/* Bigger, more filled photo splits on the What We Do pages */
+body.pad250 .split .visual { min-height: clamp(380px, 42vw, 580px); }
+
 /* Smaller team photos: cap grid width so squares shrink */
 #team .team-grid { max-width: 1180px; margin-left: auto; margin-right: auto; }
 
@@ -558,16 +572,23 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 /* ============ Credentials strip ============ */
-.creds { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(24px, 4vw, 60px); }
-.cred { display: flex; align-items: center; gap: 12px; }
-.cred .cred-icon { width: 40px; height: 40px; flex: none; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--line-dark); display: flex; align-items: center; justify-content: center; color: var(--stone); }
-.cred .cred-icon svg { width: 20px; height: 20px; }
-.cred .cred-txt { line-height: 1.25; }
-.cred .cred-txt b { display: block; font-size: 14px; color: #fff; font-weight: 700; }
-.cred .cred-txt span { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); }
-.bg-card .cred .cred-icon { background: #fff; border-color: var(--line); color: var(--navy); }
-.bg-card .cred .cred-txt b { color: var(--navy); }
-.bg-card .cred .cred-txt span { color: var(--taupe); }
+/* Credibility banner — solid card, real icons, solid (non-transparent) text */
+.creds {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 0;
+  background: #fff; border: 1px solid var(--line); border-radius: 18px;
+  box-shadow: 0 24px 60px -38px rgba(19,30,41,.4); overflow: hidden;
+}
+.cred { flex: 1 1 0; min-width: 210px; display: flex; align-items: center; justify-content: center; gap: 15px; padding: clamp(20px,2.2vw,30px) clamp(18px,2vw,30px); position: relative; }
+.cred + .cred::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 46px; width: 1px; background: var(--line); }
+.cred .cred-icon { width: 48px; height: 48px; flex: none; border-radius: 50%; background: var(--navy); border: none; display: flex; align-items: center; justify-content: center; color: #fff; }
+.cred .cred-icon svg { width: 22px; height: 22px; }
+.cred .cred-txt { line-height: 1.3; }
+.cred .cred-txt b { display: block; font-size: 15.5px; color: #0c0d12; font-weight: 800; }
+.cred .cred-txt span { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #243747; font-weight: 700; }
+@media (max-width: 720px){
+  .cred { flex: 1 1 45%; min-width: 45%; }
+  .cred + .cred::before { display: none; }
+}
 
 /* ============ Case studies ============ */
 .case-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 28px); }
@@ -661,7 +682,6 @@ textarea { min-height: 140px; resize: vertical; }
   .nav-primary.open .dropdown-menu a { font-size: 14px; }
   .cards, .quotes, .case-cards { grid-template-columns: 1fr; }
   .quote.feature { grid-column: span 1; }
-  .creds { gap: 24px 32px; }
   .split { grid-template-columns: 1fr; gap: 40px; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-band { grid-template-columns: repeat(2, 1fr); gap: 36px; }
