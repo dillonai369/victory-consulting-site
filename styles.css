@@ -292,40 +292,43 @@ h2 {
 .reveal-mask > span { display: block; transform: translateY(110%); transition: transform 950ms var(--ease); }
 .reveal-mask.visible > span { transform: none; }
 
-/* ============ Trusted-by marquee (logos) ============ */
-.trust-v2 {
-  margin: 70px 0 20px;
-  padding: 20px 0 10px;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+/* ============ Trusted-by logo strip — inside the hero (Studio Seven) ============ */
+.hero-video-wrap.has-brands .container { padding-bottom: clamp(200px, 24vh, 250px); }
+.hero-brands {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 200px; z-index: 3;
+  pointer-events: none; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
 }
-.trust-v2-label {
-  text-align: center;
-  font-family: 'Geist', -apple-system, system-ui, sans-serif;
-  font-size: 13px; font-weight: 400; letter-spacing: 0.01em;
-  color: rgba(0,0,0,0.5); margin-bottom: 26px;
+.hero-brands-fade {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(10,14,20,0) 0%, rgba(10,14,20,0) 42%, rgba(10,14,20,.26) 68%, rgba(10,14,20,.52) 88%, rgba(10,14,20,.7) 100%);
 }
-.trust-v2-marquee {
-  width: 100%; overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+.hero-brands-label {
+  position: relative; z-index: 2; text-align: left;
+  color: rgba(255,255,255,.72); font-family: 'Geist', var(--font-sans);
+  font-size: 13px; font-weight: 400; letter-spacing: .02em;
+  padding: 0 var(--edge) 18px;
 }
-.trust-v2-track {
-  display: flex; align-items: center; gap: 64px; width: max-content;
-  animation: trustV2Scroll 55s linear infinite;
+.hero-brands-track {
+  position: relative; z-index: 2; width: 100%; overflow: hidden; padding-bottom: 34px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
-.trust-v2-track img {
-  height: 54px; width: auto; flex: none;
-  filter: invert(1);          /* white PNGs -> solid black */
-  opacity: 0.55; transition: opacity .3s ease;
-  border-radius: 0; background: transparent; border: 0; box-shadow: none; object-fit: contain;
+.hero-brands-row {
+  display: flex; align-items: center; gap: 60px; width: max-content;
+  animation: heroBrandScroll 50s linear infinite;
 }
-.trust-v2-track img:hover { opacity: 0.85; }
-.trust-v2:hover .trust-v2-track { animation-play-state: paused; }
-@keyframes trustV2Scroll {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-50%, 0, 0); }
+.hero-brands-row img {
+  height: 54px; width: auto; display: block; flex: 0 0 auto; object-fit: contain;
+  opacity: .72; filter: brightness(1.15);
+}
+@keyframes heroBrandScroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@media (max-width: 900px) {
+  .hero-video-wrap.has-brands .container { padding-bottom: 165px; }
+  .hero-brands { height: 148px; }
+  .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 10px; }
+  .hero-brands-row { gap: 40px; }
+  .hero-brands-row img { height: 40px; }
 }
 
 /* ============ Cards ============ */
