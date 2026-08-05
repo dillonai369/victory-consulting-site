@@ -1,0 +1,71 @@
+{
+  "_note": "PLACEHOLDER case studies for layout. Replace with client-confirmed names, industries, and metrics once Victory sends real data. The admin app will manage this file and regenerate the marked blocks in index.html + results.html.",
+  "caseStudies": [
+    {
+      "slug": "csuite-aligned-2b-builds",
+      "industry": "Construction",
+      "segment": "Enterprise",
+      "service": "Team Effectiveness",
+      "metric": "Record",
+      "metricLabel": "highest volume of work in company history",
+      "title": "A C-suite aligned before three $2B builds",
+      "summary": "On the brink of two to three $2B projects, the C-suite didn't feel the team could execute together at the highest level. Mistrust trickled down and attrition rose. After an in-depth teaming and leadership partnership, they won the largest slate of work in company history.",
+      "photo": ""
+    },
+    {
+      "slug": "presentation-won-45m-bid",
+      "industry": "Professional Services",
+      "segment": "Mid-Market",
+      "service": "Presentation Impact",
+      "metric": "$45M",
+      "metricLabel": "project won on a single presentation",
+      "title": "The presentation that won the bid",
+      "summary": "One week after a Victory presentation-skills program, a project executive learned he was the lead speaker for a $45M pursuit. The firm won the bid — and he received direct feedback that he was the primary reason they were selected.",
+      "photo": ""
+    },
+    {
+      "slug": "leadership-habits-outlast",
+      "industry": "Insurance",
+      "segment": "Fortune 500",
+      "service": "Leadership Development",
+      "metric": "Years",
+      "metricLabel": "of cultural impact leaders still cite",
+      "title": "Leadership habits that outlast the engagement",
+      "summary": "Victory imparted sustainable leadership strategies that shaped the organization's culture — the kind of change its leaders can still point to years after the work was done.",
+      "photo": ""
+    },
+    {
+      "slug": "attrition-into-alignment",
+      "industry": "Hospitality",
+      "segment": "Enterprise",
+      "service": "Team Effectiveness",
+      "metric": "Retained",
+      "metricLabel": "high performers through a period of change",
+      "title": "Turning attrition into alignment",
+      "summary": "As mistrust spread across a senior team, retention of top performers became a real risk. A focused teaming engagement rebuilt trust between leaders and reversed the trend.",
+      "photo": ""
+    },
+    {
+      "slug": "team-behaviors-fixture",
+      "industry": "Healthcare",
+      "segment": "Enterprise",
+      "service": "Leadership Development",
+      "metric": "Standards",
+      "metricLabel": "now built into the company culture",
+      "title": "Team behaviors that became a fixture",
+      "summary": "Victory's facilitators and coaches helped the organization set standards and team-building behaviors that are now a permanent part of how the company works.",
+      "photo": ""
+    },
+    {
+      "slug": "high-potential-to-csuite",
+      "industry": "Technology",
+      "segment": "Mid-Market",
+      "service": "Leadership Development",
+      "metric": "Promoted",
+      "metricLabel": "emerging leader into the C-suite",
+      "title": "From high-potential to C-suite ready",
+      "summary": "A high-potential leader had the talent but not yet the executive presence to match. Focused one-on-one coaching closed the gap in self-awareness and influence — and the organization promoted from within with confidence.",
+      "photo": ""
+    }
+  ]
+}
