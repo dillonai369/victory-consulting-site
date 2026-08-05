@@ -360,12 +360,12 @@ section:not(.bg-card):not(.bg-deep) .card { background: var(--cloud); border-col
 
 /* Key-point callout — navy card, red top edge (Guidelines p.16) */
 .callout-key {
-  background: var(--navy); color: #fff; border-radius: 10px;
-  border-top: 4px solid var(--red);
-  padding: clamp(26px, 3vw, 40px);
+  background: var(--navy); color: #fff; border-radius: 12px;
+  border-left: 3px solid var(--red);
+  padding: 18px 24px; margin: 22px 0;
 }
-.callout-key h3 { color: #fff; font-weight: 700; font-size: 21px; margin-bottom: 10px; }
-.callout-key p { color: rgba(255,255,255,.82); font-size: 16px; }
+.callout-key h3 { color: #fff; font-weight: 700; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
+.callout-key p { color: #fff; font-size: 15.5px; line-height: 1.55; margin: 0; }
 
 /* ============ Split ============ */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
@@ -401,8 +401,8 @@ section:not(.bg-card):not(.bg-deep) .card { background: var(--cloud); border-col
 .checklist li { padding-left: 26px; position: relative; margin-bottom: 14px; color: var(--taupe); font-size: 16px; }
 .bg-deep .checklist li { color: rgba(255,255,255,.8); }
 .checklist li:before {
-  content: ""; position: absolute; left: 2px; top: 9px;
-  width: 8px; height: 8px; background: var(--red);
+  content: ""; position: absolute; left: 2px; top: 8px;
+  width: 8px; height: 8px; background: var(--red); border-radius: 50%;
 }
 .bg-deep .checklist li:before { background: var(--stone); } /* red never on dark */
 
@@ -491,6 +491,34 @@ textarea { min-height: 140px; resize: vertical; }
 .person .meta .ttl { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-top: 5px; }
 .person .meta .bio { font-size: 13.5px; color: var(--taupe); margin-top: 10px; line-height: 1.55; }
 
+/* Double side padding helper (Meet Victory century + team, Insights) */
+.split-wide.pad2x > .container,
+.container.wide.pad2x { padding-left: calc(var(--edge) * 2); padding-right: calc(var(--edge) * 2); }
+
+/* Smaller team photos: cap grid width so squares shrink */
+#team .team-grid { max-width: 1180px; margin-left: auto; margin-right: auto; }
+
+/* Join-the-team card */
+.team-grid .join-card {
+  grid-column: span 3; background: var(--navy); color: #fff;
+  border-radius: 18px; display: flex; align-items: center;
+}
+.team-grid .join-card .join-inner { padding: clamp(26px, 3vw, 42px); width: 100%; }
+.join-card .eyebrow { color: var(--stone); }
+.join-card h3 { color: #fff; font-weight: 700; font-size: clamp(23px, 2.3vw, 30px); margin: 8px 0 10px; }
+.join-card p { color: rgba(255,255,255,.82); font-size: 15px; line-height: 1.6; max-width: 640px; }
+.join-form { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.join-form .jf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.join-form input, .join-form textarea {
+  width: 100%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22);
+  border-radius: 10px; padding: 12px 14px; color: #fff; font-family: inherit; font-size: 14.5px;
+}
+.join-form input::placeholder, .join-form textarea::placeholder { color: rgba(255,255,255,.55); }
+.join-form input:focus, .join-form textarea:focus { outline: none; border-color: var(--stone); background: rgba(255,255,255,.12); }
+.join-form textarea { resize: vertical; }
+.join-form .btn-accent { align-self: flex-start; margin-top: 2px; }
+@media (max-width: 980px){ .team-grid .join-card { grid-column: span 1; } .join-form .jf-row { grid-template-columns: 1fr; } }
+
 /* ============ Blog ============ */
 .post-card {
   background: #fff; border: 1px solid var(--line); border-radius: 10px;
@@ -508,7 +536,8 @@ textarea { min-height: 140px; resize: vertical; }
 .blog-intro .eyebrow { margin-bottom: 14px; }
 .blog-intro h2 { font-size: clamp(28px, 3.4vw, 42px); line-height: 1.12; }
 .blog-intro p { color: var(--taupe); margin-top: 18px; font-size: 16px; line-height: 1.66; }
-.blog-posts { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2vw, 26px); }
+.blog-posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2vw, 28px); }
+@media (max-width: 900px){ .blog-posts { grid-template-columns: repeat(2, 1fr); } }
 .blog-posts .post-card { padding: 0; overflow: hidden; max-width: none; }
 .blog-posts .post-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
 .blog-posts .post-card .date { padding: 22px 22px 0; display: block; }
@@ -658,7 +687,7 @@ textarea { min-height: 140px; resize: vertical; }
 }
 
 /* ============ Clean UI polish — rounder cards + smooth hover ============ */
-.callout-key, .quote, .case-card, .split .visual { border-radius: 20px; }
+.quote, .case-card, .split .visual { border-radius: 20px; }
 .card, .callout-key, .quote, .case-card {
   transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1), border-color .45s var(--ease);
 }
