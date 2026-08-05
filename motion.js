@@ -22,7 +22,7 @@
     var onScroll = function () {
       if (!ticking) {
         requestAnimationFrame(function () {
-          var threshold = heroDark ? (window.innerHeight * 0.55) : 40;
+          var threshold = 40;
           header.classList.toggle('is-scrolled', window.scrollY > threshold);
           ticking = false;
         });

@@ -318,11 +318,11 @@ h2 {
           mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
 .hero-brands-row {
-  display: flex; align-items: center; gap: 84px; width: max-content;
+  display: flex; align-items: center; gap: 63px; width: max-content;
   animation: heroBrandScroll 60s linear infinite;
 }
 .hero-brands-row img {
-  height: 150px; width: auto; display: block; flex: 0 0 auto; object-fit: contain;
+  height: 165px; width: auto; display: block; flex: 0 0 auto; object-fit: contain;
   opacity: .82; filter: brightness(1.2);
 }
 @keyframes heroBrandScroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
@@ -330,8 +330,8 @@ h2 {
   .hero-video-wrap.has-brands .container { padding-bottom: 200px; }
   .hero-brands { height: 190px; }
   .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 10px; }
-  .hero-brands-row { gap: 48px; }
-  .hero-brands-row img { height: 84px; }
+  .hero-brands-row { gap: 36px; }
+  .hero-brands-row img { height: 92px; }
 }
 
 /* ============ Cards ============ */
@@ -369,6 +369,12 @@ section:not(.bg-card):not(.bg-deep) .card { background: var(--cloud); border-col
 
 /* ============ Split ============ */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
+
+/* Intro split — full-width, tighter side spacing, shorter vertically */
+.intro { padding: clamp(44px, 5.5vw, 78px) 0; }
+.intro > .container { max-width: none; padding: 0 var(--edge); }
+.intro .split { grid-template-columns: 1fr 1.05fr; gap: clamp(28px, 3vw, 46px); }
+.intro .split .visual { min-height: clamp(300px, 34vw, 440px); }
 .split h2 { margin-bottom: 20px; }
 .split p { color: var(--taupe); margin-bottom: 15px; }
 .bg-deep .split p { color: rgba(255,255,255,.78); }
