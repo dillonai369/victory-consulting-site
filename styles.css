@@ -496,24 +496,36 @@ textarea { min-height: 140px; resize: vertical; }
 /* ============ Team ============ */
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.2vw, 28px); }
 /* Flip card: photo + name/title on front, bio on back (tap/click to flip) */
-.person { background: transparent; border: none; border-radius: 18px; cursor: pointer; perspective: 1500px; }
-.person .flip-inner { position: relative; width: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+/* Fixed aspect + both faces absolutely stacked → every card identical size, no flip glitch */
+.person { background: transparent; border: none; cursor: pointer; perspective: 1600px; }
+.person .flip-inner {
+  position: relative; width: 100%; aspect-ratio: 1 / 1.46;
+  transform-style: preserve-3d; will-change: transform;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1);
+}
 .person.flipped .flip-inner { transform: rotateY(180deg); }
-.person .face { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: box-shadow .45s var(--ease), border-color .45s var(--ease); }
-.person .face.front { position: relative; }
-.person .face.back { position: absolute; inset: 0; transform: rotateY(180deg); background: var(--navy); color: #fff; padding: 20px 20px; display: flex; flex-direction: column; overflow-y: auto; }
+.person .face {
+  position: absolute; inset: 0; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 18px; background: #fff;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.person .face.front { display: flex; flex-direction: column; transition: box-shadow .45s var(--ease), border-color .45s var(--ease); }
 .person:hover .face.front { box-shadow: 0 26px 58px -32px rgba(19,30,41,.45); border-color: var(--navy-20); }
-.person .photo { aspect-ratio: 1/1; overflow: hidden; background: var(--cloud); }
+.person .face.back {
+  transform: rotateY(180deg); background: var(--navy); color: #fff;
+  padding: clamp(16px,1.4vw,22px); display: flex; flex-direction: column; justify-content: center;
+}
+.person .photo { aspect-ratio: 1/1; flex: none; overflow: hidden; background: var(--cloud); }
 .person .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 700ms var(--ease); }
 .person:hover .photo img { transform: scale(1.04); }
-.person .meta { padding: 18px 20px 20px; }
-.person .meta .nm { font-weight: 700; font-size: 17.5px; color: var(--navy); }
-.person .meta .ttl { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-top: 5px; }
-.person .flip-hint { display: inline-block; margin-top: 11px; font-size: 9.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--red); font-weight: 700; opacity: .85; }
+.person .meta { flex: 1; min-height: 0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; }
+.person .meta .nm { font-weight: 700; font-size: 17px; color: var(--navy); line-height: 1.15; }
+.person .meta .ttl { font-size: 10px; letter-spacing: .11em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-top: 5px; line-height: 1.3; }
+.person .flip-hint { display: inline-block; margin-top: 9px; font-size: 9px; letter-spacing: .13em; text-transform: uppercase; color: var(--red); font-weight: 700; opacity: .8; }
 .person .flip-hint::before { content: "\21ba  "; }
-.person .face.back .nm { font-weight: 700; font-size: 17px; color: #fff; }
-.person .face.back .ttl { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); font-weight: 700; margin-top: 4px; }
-.person .face.back .bio { font-size: 12px; color: rgba(255,255,255,.86); margin-top: 11px; line-height: 1.5; }
+.person .face.back .nm { font-weight: 700; font-size: 16px; color: #fff; line-height: 1.2; }
+.person .face.back .ttl { font-size: 9.5px; letter-spacing: .11em; text-transform: uppercase; color: var(--stone); font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.person .face.back .bio { font-size: 11.5px; color: rgba(255,255,255,.88); margin-top: 10px; line-height: 1.5; }
 
 /* Double side padding helper (Meet Victory century + team, Insights) */
 .split-wide.pad2x > .container,
@@ -773,10 +785,13 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
 @media (max-width: 560px) {
   .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .team-grid .join-card { grid-column: 1 / -1; }
-  .person .meta { padding: 13px 13px 15px; }
+  .person .meta { padding: 11px 13px; }
   .person .meta .nm { font-size: 14.5px; }
-  .person .face.back { padding: 15px 15px; }
-  .person .face.back .bio { font-size: 11px; }
+  .person .meta .ttl { font-size: 9px; }
+  .person .flip-hint { font-size: 8px; margin-top: 6px; }
+  .person .face.back { padding: 13px 14px; }
+  .person .face.back .nm { font-size: 14px; }
+  .person .face.back .bio { font-size: 10.5px; margin-top: 8px; line-height: 1.46; }
   .form-grid { grid-template-columns: 1fr; }
   .form-grid .full { grid-column: span 1; }
   .header-cta .btn { padding: 11px 18px; font-size: .8rem; }
