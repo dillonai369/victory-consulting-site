@@ -691,7 +691,9 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
 }
 @media (max-width: 900px) {
   .nav-primary { display: none; }
-  .site-header { top: 12px; left: 16px; right: 16px; height: 50px; }
+  .site-header { top: 12px; left: 14px; right: 14px; height: 50px; }
+  /* keep the pill fully on-screen (a few px in from each edge) so it renders as a clean oval */
+  .site-header::before { left: -8px; right: -8px; top: -7px; bottom: -7px; }
   .brand .logo { height: 34px; }
   .menu-toggle { display: block; background: none; border: none; cursor: pointer; color: #0c0d12; padding: 8px; }
   .header-cta .btn-accent { font-size: 13px; padding: 9px 18px; }
