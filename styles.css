@@ -495,18 +495,25 @@ textarea { min-height: 140px; resize: vertical; }
 
 /* ============ Team ============ */
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.2vw, 28px); }
-.person {
-  background: #fff; border: 1px solid var(--line); border-radius: 18px;
-  overflow: hidden; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease);
-}
-.person:hover { transform: translateY(-10px); box-shadow: 0 30px 64px -30px rgba(19,30,41,.5); border-color: var(--navy); }
+/* Flip card: photo + name/title on front, bio on back (tap/click to flip) */
+.person { background: transparent; border: none; border-radius: 18px; cursor: pointer; perspective: 1500px; }
+.person .flip-inner { position: relative; width: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.person.flipped .flip-inner { transform: rotateY(180deg); }
+.person .face { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; -webkit-backface-visibility: hidden; backface-visibility: hidden; transition: box-shadow .45s var(--ease), border-color .45s var(--ease); }
+.person .face.front { position: relative; }
+.person .face.back { position: absolute; inset: 0; transform: rotateY(180deg); background: var(--navy); color: #fff; padding: 20px 20px; display: flex; flex-direction: column; overflow-y: auto; }
+.person:hover .face.front { box-shadow: 0 26px 58px -32px rgba(19,30,41,.45); border-color: var(--navy-20); }
 .person .photo { aspect-ratio: 1/1; overflow: hidden; background: var(--cloud); }
 .person .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 700ms var(--ease); }
 .person:hover .photo img { transform: scale(1.04); }
-.person .meta { padding: 20px 22px 24px; }
+.person .meta { padding: 18px 20px 20px; }
 .person .meta .nm { font-weight: 700; font-size: 17.5px; color: var(--navy); }
 .person .meta .ttl { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-top: 5px; }
-.person .meta .bio { font-size: 13.5px; color: var(--taupe); margin-top: 10px; line-height: 1.55; }
+.person .flip-hint { display: inline-block; margin-top: 11px; font-size: 9.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--red); font-weight: 700; opacity: .85; }
+.person .flip-hint::before { content: "\21ba  "; }
+.person .face.back .nm { font-weight: 700; font-size: 17px; color: #fff; }
+.person .face.back .ttl { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--stone); font-weight: 700; margin-top: 4px; }
+.person .face.back .bio { font-size: 12px; color: rgba(255,255,255,.86); margin-top: 11px; line-height: 1.5; }
 
 /* Double side padding helper (Meet Victory century + team, Insights) */
 .split-wide.pad2x > .container,
@@ -764,7 +771,12 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
   .case-card .case-body { padding: 22px; }
 }
 @media (max-width: 560px) {
-  .team-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .team-grid .join-card { grid-column: 1 / -1; }
+  .person .meta { padding: 13px 13px 15px; }
+  .person .meta .nm { font-size: 14.5px; }
+  .person .face.back { padding: 15px 15px; }
+  .person .face.back .bio { font-size: 11px; }
   .form-grid { grid-template-columns: 1fr; }
   .form-grid .full { grid-column: span 1; }
   .header-cta .btn { padding: 11px 18px; font-size: .8rem; }

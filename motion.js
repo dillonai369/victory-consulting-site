@@ -57,6 +57,16 @@
     counters.forEach(function (el) { cio.observe(el); });
   }
 
+  /* ---------- Team flip cards ---------- */
+  document.querySelectorAll('.team-grid .person').forEach(function (card) {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.addEventListener('click', function () { card.classList.toggle('flipped'); });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
+    });
+  });
+
   /* ---------- Mobile menu ---------- */
   var toggle = document.getElementById('menuToggle');
   var nav = document.getElementById('nav');
