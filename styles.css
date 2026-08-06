@@ -140,6 +140,7 @@ a { color: inherit; text-decoration: none; }
 /* Right side */
 .header-cta { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
 .header-phone { display: none; }
+.nav-contact { display: none; } /* only shown inside the mobile menu */
 
 /* Contact — solid black pill */
 .site-header .header-cta .btn-accent {
@@ -682,7 +683,17 @@ body.pad250 .split .visual { min-height: clamp(380px, 42vw, 580px); }
   .nav-primary.open .dropdown-menu a { font-size: 14px; }
   .cards, .quotes, .case-cards { grid-template-columns: 1fr; }
   .quote.feature { grid-column: span 1; }
-  .split { grid-template-columns: 1fr; gap: 40px; }
+  /* Collapse ALL splits (incl. intro / split-wide) to one column on mobile */
+  .split, .intro .split, .split-wide .split { grid-template-columns: 1fr; gap: 26px; }
+  /* Always stack text first, image below — override any desktop image-first ordering */
+  .split > * { order: 1; }
+  .split .visual { order: 2 !important; min-height: 300px !important; }
+  /* Header: logo + burger only */
+  .header-cta .btn-accent, .header-phone { display: none !important; }
+  .nav-primary.open .nav-contact { display: block; }
+  /* Hero CTAs stacked full width */
+  .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; text-align: center; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-band { grid-template-columns: repeat(2, 1fr); gap: 36px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
