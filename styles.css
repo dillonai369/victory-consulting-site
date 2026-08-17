@@ -185,7 +185,7 @@ body.hero-dark .site-header:not(.is-scrolled) .menu-toggle { color: #fff; }
 @media (max-width: 760px) {
   .hero-media-desktop { display: none; }
   .hero-media-mobile { display: block; }
-  .hero-video-wrap { min-height: 90svh; }
+  .hero-video-wrap { min-height: 100svh; }
 }
 
 /* ============ Buttons (Guidelines p.14/16) ============ */
@@ -329,10 +329,16 @@ h2 {
 }
 @keyframes heroBrandScroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 @media (max-width: 900px) {
-  .hero-video-wrap.has-brands .container { padding-bottom: 282px; }
-  .hero-brands { height: 268px; }
-  .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 8px; }
-  .hero-brands-row img { height: 180px; margin-right: 54px; }
+  /* strip pulled lower + tighter so hero content sits further down the page */
+  .hero-video-wrap.has-brands .container { padding-bottom: 232px; }
+  .hero-brands { height: 222px; }
+  .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 6px; }
+  .hero-brands-track { padding-bottom: 10px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 3%, #000 97%, transparent 100%);
+  }
+  .hero-brands-row { will-change: transform; transform: translateZ(0); }
+  .hero-brands-row img { height: 180px; margin-right: 26px; }
 }
 
 /* ============ Cards ============ */
