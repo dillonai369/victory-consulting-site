@@ -901,3 +901,13 @@ body.theme-dark .nav-primary.open > li { border-color: rgba(255,255,255,.1); }
 body.theme-dark .nav-primary.open .nav-contact a { color: #ecf1f5; }
 body.theme-dark .btn-primary { background: #ecf1f5; color: #131a23; }
 body.theme-dark .btn-outline:not(.hero-video-wrap .btn-outline) { color: #ecf1f5; border-color: rgba(255,255,255,.4); }
+
+/* Fix: when the white header pill expands on hover, the toggle turns dark (visible) */
+body.hero-dark .site-header:not(.is-scrolled):hover .theme-toggle {
+  color: #0c0d12; border-color: rgba(0,0,0,.22);
+}
+body.theme-dark .site-header:not(.is-scrolled):hover .theme-toggle { color: #fff; border-color: rgba(255,255,255,.4); }
+
+/* Fix: pills (Our Approach etc.) invert properly in dark mode */
+body.theme-dark .pill { background: #151c25; border-color: rgba(255,255,255,.18); color: #ecf1f5; }
+body.theme-dark .pill:hover { border-color: #ecf1f5; }
