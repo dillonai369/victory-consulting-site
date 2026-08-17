@@ -2,6 +2,18 @@
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Theme (light/dark test toggle) ---------- */
+  try {
+    if (localStorage.getItem('vc-theme') === 'dark') document.body.classList.add('theme-dark');
+  } catch (e) {}
+  var themeBtn = document.getElementById('themeToggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var dark = document.body.classList.toggle('theme-dark');
+      try { localStorage.setItem('vc-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    });
+  }
+
   /* ---------- Scroll reveal ---------- */
   if (!reduced && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
