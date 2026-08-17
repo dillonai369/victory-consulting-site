@@ -81,7 +81,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Logo (left) — 78px, overflows the 68px bar slightly (allowed) */
 .brand { display: flex; align-items: center; position: relative; z-index: 1; }
-.brand .logo { height: 50px; width: auto; display: block; transition: opacity .2s ease; }
+.brand .logo { height: 36px; width: auto; display: block; transition: opacity .2s ease; }
 .brand .logo-white { display: none; }
 .brand:hover .logo { opacity: .75; }
 
@@ -477,6 +477,12 @@ section:not(.bg-card):not(.bg-deep) .card { background: var(--cloud); border-col
   display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
   box-shadow: 0 22px 50px -28px rgba(19,30,41,.5);
 }
+/* VC mark watermark — subtle brand accent in the CTA banner */
+.cta-banner::after {
+  content: ""; position: absolute; right: -40px; bottom: -50px; width: 340px; height: 258px;
+  background: url("assets/mark-white.svg") no-repeat center / contain;
+  opacity: .06; pointer-events: none;
+}
 .cta-banner h2 { color: #fff; }
 .cta-banner p { margin-top: 14px; color: rgba(255,255,255,.75); }
 .cta-banner .actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
@@ -713,7 +719,7 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
   .site-header { top: 12px; left: 14px; right: 14px; height: 50px; }
   /* keep the pill fully on-screen (a few px in from each edge) so it renders as a clean oval */
   .site-header::before { left: -8px; right: -8px; top: -7px; bottom: -7px; }
-  .brand .logo { height: 34px; }
+  .brand .logo { height: 23px; }
   .menu-toggle { display: block; background: none; border: none; cursor: pointer; color: #0c0d12; padding: 8px; }
   .header-cta .btn-accent { font-size: 13px; padding: 9px 18px; }
   /* high-specificity + !important so it always beats the header hover/scroll transparency */
@@ -818,3 +824,7 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
 .case-card:hover .case-photo img { transform: scale(1.06); }
 .split .visual img.photo { transition: transform .7s cubic-bezier(.22,1,.36,1); }
 .split .visual:hover img.photo { transform: scale(1.04); }
+
+/* Footer VC mark beside the copyright */
+.footer-mark-wrap { display: inline-flex; align-items: center; gap: 10px; }
+.footer-mark { height: 22px; width: auto; opacity: .9; }
