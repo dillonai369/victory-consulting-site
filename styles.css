@@ -329,10 +329,10 @@ h2 {
 }
 @keyframes heroBrandScroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 @media (max-width: 900px) {
-  .hero-video-wrap.has-brands .container { padding-bottom: 148px; }
-  .hero-brands { height: 136px; }
+  .hero-video-wrap.has-brands .container { padding-bottom: 216px; }
+  .hero-brands { height: 204px; }
   .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 8px; }
-  .hero-brands-row img { height: 60px; margin-right: 40px; }
+  .hero-brands-row img { height: 120px; margin-right: 48px; }
 }
 
 /* ============ Cards ============ */
@@ -720,6 +720,7 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
   /* keep the pill fully on-screen (a few px in from each edge) so it renders as a clean oval */
   .site-header::before { left: -8px; right: -8px; top: -7px; bottom: -7px; }
   .brand .logo { height: 23px; }
+  .brand { margin-left: 6px; } /* nudge logo right so it sits cleanly inside the pill's rounded end */
   .menu-toggle { display: block; background: none; border: none; cursor: pointer; color: #0c0d12; padding: 8px; }
   .header-cta .btn-accent { font-size: 13px; padding: 9px 18px; }
   /* high-specificity + !important so it always beats the header hover/scroll transparency */
