@@ -329,10 +329,10 @@ h2 {
 }
 @keyframes heroBrandScroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 @media (max-width: 900px) {
-  .hero-video-wrap.has-brands .container { padding-bottom: 216px; }
-  .hero-brands { height: 204px; }
+  .hero-video-wrap.has-brands .container { padding-bottom: 282px; }
+  .hero-brands { height: 268px; }
   .hero-brands-label { font-size: 11px; padding: 0 var(--edge) 8px; }
-  .hero-brands-row img { height: 120px; margin-right: 48px; }
+  .hero-brands-row img { height: 180px; margin-right: 54px; }
 }
 
 /* ============ Cards ============ */
@@ -755,8 +755,8 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
   /* Header: logo + burger only */
   .header-cta .btn-accent, .header-phone { display: none !important; }
   .nav-primary.open .nav-contact { display: block; }
-  /* Hero CTAs: small, left-aligned (not full width) */
-  .hero-ctas { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+  /* Hero CTAs: small, left-aligned, stacked (Why Victory under Start the Conversation) */
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 10px; }
   .hero-ctas .btn { width: auto; padding: 12px 22px; font-size: 14px; }
   /* Hero headline: tighter, breathing room on the right */
   .hero-video-wrap .container { padding-left: 22px; padding-right: 22px; }
