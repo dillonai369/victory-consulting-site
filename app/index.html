@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victory Consulting — Management Platform</title>
+<link rel="icon" href="assets/VC_Logo_Favicon_Navy.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#243747; --midnight:#131E29; --ink:#0c0d12; --stone:#C4BCB7;
+  --red:#9A3324; --taupe:#5b6670; --cloud:#F5F3F1; --line:#e7e3de;
+  --green:#3f6f52; --amber:#b07d2a;
+  --sans:"Plus Jakarta Sans",-apple-system,sans-serif; --ui:"Geist",var(--sans);
+  --r:16px; --shadow:0 10px 34px -18px rgba(19,30,41,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:#f7f5f3;color:#1d2731;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font-family:var(--ui);cursor:pointer}
+input,textarea,select{font-family:var(--sans);font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fff;color:#1d2731}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy)}
+label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);margin:14px 0 6px}
+.hide{display:none!important}
+
+/* ===== Login ===== */
+#login{position:fixed;inset:0;background:linear-gradient(155deg,#1b2a37,#131E29 55%,#0d1720);display:flex;align-items:center;justify-content:center;z-index:50}
+.login-card{width:min(420px,92vw);background:#fff;border-radius:22px;padding:42px 40px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.login-card img{height:34px;margin-bottom:8px}
+.login-card h1{font-size:22px;color:var(--navy);letter-spacing:-.3px}
+.login-card p.sub{color:var(--taupe);font-size:13.5px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:100px;padding:13px 24px;font-size:14px;font-weight:600;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff;width:100%;margin-top:20px}
+.btn-red{background:var(--red);color:#fff}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--navy)}
+.login-foot{margin-top:18px;font-size:11.5px;color:#9aa4ac;text-align:center}
+
+/* ===== Shell ===== */
+#app{display:flex;min-height:100vh}
+aside{width:248px;flex:none;background:var(--midnight);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.side-brand{padding:26px 28px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.side-brand img{height:18px}
+.side-brand .plat{font-family:var(--ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-top:9px}
+nav{padding:14px 12px;flex:1;overflow-y:auto}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:11px 14px;border-radius:11px;margin-bottom:3px;text-align:left;transition:background .18s,color .18s}
+.nav-item svg{width:17px;height:17px;flex:none}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-item.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+.nav-item .pill{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:100px;padding:2px 8px}
+.side-user{padding:16px 20px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:11px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--stone);color:var(--midnight);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.side-user .nm{font-size:13px;font-weight:600}
+.side-user .em{font-size:11px;color:rgba(255,255,255,.5)}
+main{flex:1;min-width:0}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(247,245,243,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.topbar h2{font-size:19px;color:var(--navy);letter-spacing:-.2px}
+.topbar .acts{display:flex;gap:10px;align-items:center}
+.top-link{font-family:var(--ui);font-size:13px;color:var(--taupe);text-decoration:none;border:1.5px solid var(--line);border-radius:100px;padding:8px 16px;background:#fff}
+.content{padding:32px 40px 70px}
+
+/* ===== bits ===== */
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(420px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.stat .k{font-family:var(--ui);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);font-weight:600}
+.stat .v{font-size:30px;font-weight:800;color:var(--navy);margin-top:6px;letter-spacing:-.5px}
+.stat .d{font-size:12px;margin-top:4px;color:var(--green);font-weight:600}
+.stat .d.na{color:#9aa4ac;font-weight:500}
+.sec-t{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.banner{display:flex;gap:13px;align-items:flex-start;border-radius:14px;padding:15px 18px;font-size:13px;margin-bottom:20px}
+.banner.amber{background:#faf3e4;border:1px solid #ecd9b0;color:#7c5a1e}
+.banner.blue{background:#eef2f6;border:1px solid #d5dee7;color:var(--navy)}
+.banner b{display:block;margin-bottom:2px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:7px}
+.dot.g{background:#3f9f6a}.dot.a{background:#d9a13c}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-family:var(--ui);text-align:left;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);padding:10px 12px;border-bottom:1.5px solid var(--line)}
+td{padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;font-family:var(--ui);font-size:11px;font-weight:600;border-radius:100px;padding:4px 11px}
+.tag.new{background:#eaf3ee;color:var(--green)}
+.tag.done{background:#eef2f6;color:var(--taupe)}
+.tag.prog{background:#faf3e4;color:var(--amber)}
+.tag.red{background:#f7e9e6;color:var(--red)}
+.stars{color:#FBBC04;letter-spacing:2px;font-size:15px}
+.icon-btn{background:#fff;border:1.4px solid var(--line);color:var(--taupe);padding:6px 14px;border-radius:100px;font-family:var(--ui);font-size:12px}
+.icon-btn:hover{background:var(--cloud);color:var(--red)}
+.empty{color:#9aa4ac;font-size:13.5px;text-align:center;padding:30px 0}
+
+/* team grid */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:18px}
+.tcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.tcard img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top}
+.tcard .in{padding:13px 15px 15px}
+.tcard .nm{font-weight:700;font-size:14.5px;color:var(--navy)}
+.tcard .tt{font-family:var(--ui);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);font-weight:600;margin-top:3px}
+.tcard .ops{display:flex;gap:4px;margin-top:9px}
+.tcard .ops button{font-size:12px;padding:5px 12px;border-radius:100px;border:1.4px solid var(--line);background:#fff;color:var(--taupe)}
+.tcard .ops button:hover{border-color:var(--navy);color:var(--navy)}
+.tcard .ops button.rm:hover{border-color:var(--red);color:var(--red)}
+
+/* blog list */
+.brow{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.brow img{width:110px;height:72px;object-fit:cover;border-radius:10px;flex:none}
+.brow .bt{font-weight:700;color:var(--navy);font-size:15px}
+.brow .bm{font-family:var(--ui);font-size:11px;color:var(--taupe);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.brow .sp{margin-left:auto;display:flex;gap:6px;align-items:center;flex:none}
+.tag.live{background:#eaf3ee;color:var(--green)}
+.tag.draft{background:#faf3e4;color:var(--amber)}
+
+/* modal */
+#modal{position:fixed;inset:0;background:rgba(12,16,22,.55);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px}
+.mcard{background:#fff;border-radius:20px;width:min(640px,94vw);max-height:88vh;overflow:auto;padding:30px 32px}
+.mcard h3{color:var(--navy);font-size:19px;margin-bottom:4px}
+.mcard .msub{color:var(--taupe);font-size:13px}
+.mfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
+
+/* chart */
+.chart-wrap{position:relative}
+.legend{display:flex;gap:18px;font-family:var(--ui);font-size:11.5px;color:var(--taupe);margin-top:10px}
+.legend .sw{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px}
+
+.toast{position:fixed;bottom:26px;right:26px;background:var(--midnight);color:#fff;padding:14px 20px;border-radius:14px;font-size:13.5px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);z-index:70;display:flex;gap:10px;align-items:center}
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
+@media(max-width:760px){aside{display:none}.content{padding:20px 16px 60px}.topbar{padding:14px 16px}}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="login">
+  <div class="login-card">
+    <img src="assets/logo-horizontal-color.svg" alt="Victory Consulting">
+    <div style="font-family:var(--ui);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);font-weight:600;margin:2px 0 16px">Management Platform</div>
+    <h1>Welcome back</h1>
+    <p class="sub">Sign in to manage your website, content, and growth.</p>
+    <label>Email</label>
+    <input id="li-email" type="email" placeholder="sarah@victoryconsulting.com">
+    <label>Password</label>
+    <input id="li-pass" type="password" placeholder="••••••••••">
+    <button class="btn btn-navy" onclick="doLogin()">Sign In</button>
+    <div class="login-foot">Secured by Studio7 · SSL encrypted</div>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div id="app" class="hide">
+  <aside>
+    <div class="side-brand">
+      <img src="assets/logo-horizontal-reversed.svg" alt="Victory Consulting">
+      <div class="plat">Management Platform</div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="side-user">
+      <div class="avatar" id="u-av">S</div>
+      <div><div class="nm" id="u-nm">Sarah Takash</div><div class="em" id="u-em">sarah@victoryconsulting.com</div></div>
+    </div>
+  </aside>
+  <main>
+    <div class="topbar">
+      <h2 id="page-title">Dashboard</h2>
+      <div class="acts">
+        <a class="top-link" href="https://victory.studio7.select" target="_blank">Visit site ↗</a>
+        <button class="btn btn-red" style="padding:9px 18px;font-size:13px" onclick="go('requests');openReq()">+ Request a change</button>
+      </div>
+    </div>
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<div id="modal" class="hide" onclick="if(event.target===this)closeModal()"><div class="mcard" id="mcard"></div></div>
+
+<script>
+/* ================= seed data (live from victoryconsulting site) ================= */
+const TEAM_SEED = [{"photo": "joe-takash.jpg", "name": "Joe Takash", "title": "President & Founder", "bio": "Executive facilitator and keynote speaker who, since 1988, has delivered more than 3,500 programs on team alignment, leadership communication, presentation skills, and employee motivation."}, {"photo": "sarah-takash.jpg", "name": "Sarah Takash", "title": "Chief Operating Officer", "bio": "Sarah coordinates integral client alignment in the areas of finances, communication and contractual agreements while Victory's consultants help clients achieve their goals."}, {"photo": "ashley-anders.jpg", "name": "Ashley Anders", "title": "Executive Coach and Facilitator", "bio": "ICF-certified executive coach with more than 25 years of experience across the private and public sectors, including internal leadership development work at Comcast."}, {"photo": "brandon-addison.jpg", "name": "Brandon Addison", "title": "Executive Coach and Facilitator", "bio": "Executive coach, facilitator, and leadership advisor with decades of experience helping high-capacity CEOs, executive teams, and business owners; a PCC-credentialed coach whose clients have included Microsoft, JPMorgan Chase, Thrivent Financial, and Novavax."}, {"photo": "calvin-iwema.jpg", "name": "Calvin Iwema", "title": "Executive Coach", "bio": "Seasoned executive coach with over 25 years of experience who has worked individually with well over 500 leaders, from project managers to C-suite executives. Holding an M.A."}, {"photo": "carolyn-ferguson.jpg", "name": "Carolyn Ferguson", "title": "Executive Facilitator", "bio": "A communicator, strategist and trainer (FSMPS, CPSM) who has coached A|E|C teams for 22 years, helping them win project interviews equating to billions in project work."}, {"photo": "chad-patterson.jpg", "name": "Chad Patterson", "title": "Executive Coach", "bio": "Executive leader, coach, speaker, and facilitator with over 25 years of experience who has coached more than 350 leaders and facilitated development experiences for over 500 teams worldwide."}, {"photo": "eileen-godinez.jpg", "name": "Eileen Godinez", "title": "Executive Coach and Facilitator", "bio": "Executive coach and organizational development consultant who spent 27 years leading teams herself and now partners with leaders across government, nonprofit, and private-sector organizations; clients include Lyft, UPS, JPMorgan Chase, the Department of Defense, and the IRS."}, {"photo": "emma-flack.jpg", "name": "Emma Flack", "title": "Executive Facilitator and Coach", "bio": "Executive coach, organizational strategist, and leadership facilitator (EdD, ACC) with 25+ years advising senior teams, from television newsrooms to global boardrooms."}, {"photo": "jennifer-nicks.jpg", "name": "Jennifer Nicks", "title": "Executive Coach", "bio": "ICF-certified executive coach who has worked with more than 60 individual executives and is certified by UC Berkeley in Accelerating Change Readiness & Agility."}, {"photo": "jennifer-pasquale.jpg", "name": "Jennifer Pasquale", "title": "Executive Coach and Facilitator", "bio": "Facilitator, coach, and organizational development consultant with more than two decades of experience, including 14 years partnering full-time with Quintiles and GlaxoSmithKline on large-scale learning and OD initiatives."}, {"photo": "joe-tabers.jpg", "name": "Joe Tabers", "title": "Executive Trainer", "bio": "Certified Speaking Professional (CSP) and expert in workplace trust, communication and relationships who has worked with over 300 organizations and, since 1985, conducted over 3,000 highly rated programs across more than 45 states and four countries."}, {"photo": "laura-dellinger.jpg", "name": "Laura Dellinger", "title": "Executive Facilitator and Coach", "bio": "Executive coach, facilitator, and leadership consultant with more than 30 years of experience, formerly principal and president of a global Certified B-Corp \u201cBest for the World\u201d consultancy."}, {"photo": "lauren-zulli.jpg", "name": "Lauren Zulli", "title": "Executive Coach and Facilitator", "bio": "PCC-credentialed executive coach and leadership development expert with 14+ years of experience \u2014 and a former sustainability engineer \u2014 grounding her work in neuroscience, cognitive behavioral psychology, and evidence-based assessment."}, {"photo": "nausheen-farishta.jpg", "name": "Nausheen Farishta", "title": "Executive Coach and Facilitator", "bio": "Leadership development consultant, facilitator, and coach with a decade of corporate L&D experience, partnering with Fortune 500 companies, high-growth organizations, and nonprofits."}, {"photo": "ravi-rajaratnam.jpg", "name": "Ravi Rajaratnam", "title": "Executive Coach and Facilitator", "bio": "Dr. Ravi Rajaratnam is a seasoned executive and leadership coach with over 30 years of experience across technology, operations, and organizational development \u2014 a former CIO and EVP who holds a PhD in Industrial-Organizational Psychology."}, {"photo": "saran-traore.jpg", "name": "Saran Traore", "title": "Executive Coach", "bio": "Certified executive coach with over 10 years of experience using advanced coaching methodologies and assessments to help leaders and teams build capacity, agility, and resilience."}, {"photo": "stephanie-staidle.jpg", "name": "Stephanie Staidle", "title": "Executive Coach and Facilitator", "bio": "Licensed therapist (LCAT, ATR-BC), integrative coach, and leadership facilitator with more than 20 years of experience at the intersection of psychology, neuroscience, and business, featured as an expert on ABC, CBS, NBC, and SXSW."}, {"photo": "susan-levy.jpg", "name": "Susan Levy", "title": "Executive Facilitator and Presentation Coach", "bio": "With a proven record spanning hospitality and Fortune 500 consulting, Susan brings more than two decades of experience in leadership development and executive communication, having facilitated more than 600 programs."}, {"photo": "teree-davis.jpg", "name": "Teree Davis", "title": "Program Manager", "bio": "Program Manager and operational hub of Victory Consulting, coordinating logistics, materials, and communication so facilitators can focus on delivering impactful experiences and clients have a seamless point of contact."}, {"photo": "vaishali-jadhav.jpg", "name": "Vaishali Jadhav", "title": "Executive Facilitator", "bio": "Seasoned professional with two decades of experience building, scaling, and facilitating global programs for purpose-driven organizations, beginning as a Gallup consultant and later helping found Whole Foods Market's Academy for Conscious Leadership."}];
+const BLOG_SEED = [{"url": "blog-4-ways-to-make-conflict-productive.html", "img": "new-insights-1.jpg", "meta": "Team Effectiveness \u00b7 5 min read", "title": "4 Ways to Make Conflict Productive", "excerpt": "Productive confrontation is the courage to close the gap between misunderstanding and alignment."}, {"url": "blog-building-trust-executive-teams.html", "img": "new-wwd-3.jpg", "meta": "Team Effectiveness \u00b7 6 min read", "title": "How to Build Trust on Executive Teams", "excerpt": "High-performing teams aren't built on talent alone \u2014 they're built on trust. Here's how to create it."}, {"url": "blog-signs-your-leaders-need-development.html", "img": "new-wwd-5.jpg", "meta": "Leadership Development \u00b7 5 min read", "title": "5 Signs Your Leaders Need Development", "excerpt": "When your best people stall, it's rarely effort \u2014 it's development. Five signs to watch for."}, {"url": "blog-executive-presence-win-the-room.html", "img": "new-wwd-4.jpg", "meta": "Presentation Impact \u00b7 5 min read", "title": "Executive Presence: Why Great Ideas Don't Win the Room", "excerpt": "Great ideas don't automatically win the room. Executive presence is what makes people believe \u2014 and act."}, {"url": "blog-the-elephant-in-the-room.html", "img": "shadow-elephant.jpg", "meta": "The Elephant \u00b7 5 min read", "title": "The Elephant in the Room", "excerpt": "The truth no one is naming is quietly capping your performance. Here's how to surface it \u2014 and move."}];
+const REVIEW_SEED = [{"text": "Victory Consulting has helped elevate the performance of our people and teams for over 27 years.", "who": "Abrar Sheriff", "role": "President, Turner Construction"}, {"text": "We were on the brink of starting two to three $2B projects. Our C-suite didn't feel the team was positioned to work together at the highest level. After an in-depth teaming and leadership partnership with Victory, we won the highest volume of work in our history.", "who": "Marcus D.", "role": "EVP, Large Upscale Hotel Group"}, {"text": "The week after I attended a presentation skills training with Victory, I learned I was the lead speaker on a presentation to compete for a $45 million project. We won the bid \u2014 and I received feedback that I was the primary reason our company was selected.", "who": "Mike Beirne", "role": "Project Executive"}, {"text": "Victory Consulting's facilitators and coaches didn't just help develop our leaders \u2014 they helped us create organizational standards and team-building behaviors that have become a fixture in our culture.", "who": "Todd Lillibridge", "role": "Chairman & CEO, Lillibridge Healthcare"}];
+
+/* sample leads (clearly labeled sample until forms connect) */
+const LEAD_SEED = [
+ {n:"Rebecca Moore",e:"r.moore@harborgroup.com",p:"(312) 555-0164",m:"We're restructuring our leadership team and would love to talk about executive coaching for 6 senior leaders.",d:"Aug 21, 2026 · 9:12 AM",s:"new",src:"Website — Contact form"},
+ {n:"David Chen",e:"dchen@meridianbuild.com",p:"(773) 555-0117",m:"Saw your work with Turner Construction. We have a $200M pursuit coming up and need presentation coaching for the pursuit team.",d:"Aug 20, 2026 · 3:47 PM",s:"new",src:"Website — Contact form"},
+ {n:"Angela Rivers",e:"arivers@lakesidehealth.org",p:"—",m:"Interested in team effectiveness workshops for our executive committee. What does a typical engagement look like?",d:"Aug 19, 2026 · 11:05 AM",s:"contacted",src:"Website — Contact form"}
+];
+const REQ_SEED = [
+ {t:"Swap the header photo on the Results page",d:"Joe would like a construction-focused image if possible.",p:"Normal",s:"done",when:"Aug 18, 2026"},
+ {t:"Update phone number in footer",d:"Confirm it shows (844) 508-7246 everywhere.",p:"Low",s:"done",when:"Aug 15, 2026"}
+];
+
+/* ================= state (persisted locally) ================= */
+function load(k,fb){try{const v=JSON.parse(localStorage.getItem('vc-'+k));return v??fb}catch(e){return fb}}
+function save(k,v){try{localStorage.setItem('vc-'+k,JSON.stringify(v))}catch(e){}}
+let team = load('team', TEAM_SEED);
+let blogs = load('blogs', BLOG_SEED.map(b=>({...b,status:'live'})));
+let leads = load('leads', LEAD_SEED);
+let reqs  = load('reqs', REQ_SEED);
+
+/* ================= icons ================= */
+const I={
+ dash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="7.5" height="9" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="5.5" rx="1.6"/><rect x="13.5" y="12" width="7.5" height="9" rx="1.6"/><rect x="3" y="15.5" width="7.5" height="5.5" rx="1.6"/></svg>',
+ blog:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+ team:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M16 3.9a3.4 3.4 0 0 1 0 6.6M21.5 20c0-3-1.9-5.5-4.6-6.3"/></svg>',
+ leads:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 1 1-4.2-7.3L21 3l-1.2 4.2A8.5 8.5 0 0 1 21 11.5z"/><path d="M8 10h8M8 14h5"/></svg>',
+ req:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L13 14l-4 1 1-4z"/></svg>',
+ rev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.1l6.1-.7z"/></svg>',
+ seo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M5 20v-6M10 20V9M15 20v-9M20 20V5"/></svg>'
+};
+
+const TABS=[
+ {id:'dash',t:'Dashboard',i:I.dash},
+ {id:'blog',t:'Blog',i:I.blog},
+ {id:'team',t:'Team',i:I.team},
+ {id:'leads',t:'Leads',i:I.leads,badge:()=>leads.filter(l=>l.s==='new').length||null},
+ {id:'requests',t:'Change Requests',i:I.req},
+ {id:'reviews',t:'Reviews',i:I.rev},
+ {id:'seo',t:'SEO & Analytics',i:I.seo}
+];
+let cur='dash';
+
+/* ================= shell ================= */
+function doLogin(){
+  const em=document.getElementById('li-email').value.trim()||'sarah@victoryconsulting.com';
+  document.getElementById('u-em').textContent=em;
+  const nm=em.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+  document.getElementById('u-nm').textContent = em.includes('sarah')?'Sarah Takash':(em.includes('joe')?'Joe Takash':nm);
+  document.getElementById('u-av').textContent=(document.getElementById('u-nm').textContent)[0];
+  document.getElementById('login').classList.add('hide');
+  document.getElementById('app').classList.remove('hide');
+  render();
+}
+function go(id){cur=id;render()}
+function render(){
+  const nav=document.getElementById('nav');
+  nav.innerHTML=TABS.map(t=>{
+    const b=t.badge?t.badge():null;
+    return `<button class="nav-item ${cur===t.id?'on':''}" onclick="go('${t.id}')">${t.i}<span>${t.t}</span>${b?`<span class="pill">${b}</span>`:''}</button>`;
+  }).join('');
+  document.getElementById('page-title').textContent=TABS.find(t=>t.id===cur).t;
+  document.getElementById('content').innerHTML=VIEWS[cur]();
+  if(cur==='seo') drawCharts();
+  if(cur==='dash') drawSpark();
+}
+function toast(msg){
+  const t=document.createElement('div');t.className='toast';t.innerHTML='✓ &nbsp;'+msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),3200);
+}
+function closeModal(){document.getElementById('modal').classList.add('hide')}
+function openModal(html){document.getElementById('mcard').innerHTML=html;document.getElementById('modal').classList.remove('hide')}
+const esc=s=>String(s).replace(/</g,'&lt;');
+
+/* ================= views ================= */
+const VIEWS={
+
+/* ---------- DASHBOARD ---------- */
+dash(){
+ const newLeads=leads.filter(l=>l.s==='new').length;
+ return `
+ <div class="grid g4">
+   <div class="card stat"><div class="k">Site visitors · 30 days</div><div class="v">1,284</div><div class="d">▲ 18% vs last month</div></div>
+   <div class="card stat"><div class="k">New leads</div><div class="v">${newLeads}</div><div class="d">${newLeads?'Awaiting reply':'All handled'}</div></div>
+   <div class="card stat"><div class="k">Google rating</div><div class="v">5.0 ★</div><div class="d na">Live after Google connect</div></div>
+   <div class="card stat"><div class="k">Site status</div><div class="v" style="font-size:20px;padding-top:8px"><span class="dot g"></span>All systems go</div><div class="d na">SSL · backups · uptime 100%</div></div>
+ </div>
+ <div class="grid g2" style="margin-top:16px">
+   <div class="card">
+     <div class="sec-t">Traffic — last 30 days</div>
+     <div class="chart-wrap"><svg id="spark" viewBox="0 0 520 170" width="100%"></svg></div>
+     <div class="legend"><span><span class="sw" style="background:#243747"></span>Visitors</span><span style="color:#9aa4ac">Sample data — live once Google is connected</span></div>
+   </div>
+   <div class="card">
+     <div class="sec-t">Latest leads</div>
+     ${leads.slice(0,3).map(l=>`
+       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)">
+         <div><b style="color:var(--navy);font-size:13.5px">${esc(l.n)}</b><div style="font-size:12px;color:var(--taupe)">${esc(l.m).slice(0,58)}…</div></div>
+         <span class="tag ${l.s==='new'?'new':'done'}">${l.s==='new'?'New':'Contacted'}</span>
+       </div>`).join('')}
+     <button class="btn btn-ghost" style="margin-top:14px;padding:9px 18px;font-size:13px" onclick="go('leads')">View all leads</button>
+   </div>
+ </div>
+ <div class="grid g3" style="margin-top:16px">
+   <div class="card"><div class="sec-t">Quick actions</div>
+     <button class="btn btn-ghost" style="width:100%;justify-content:flex-start;margin-bottom:8px;padding:11px 16px;font-size:13.5px" onclick="go('blog');newPost()">Write a blog post</button>
+     <button class="btn btn-ghost" style="width:100%;justify-content:flex-start;margin-bottom:8px;padding:11px 16px;font-size:13.5px" onclick="go('team');addMember()">Add a team member</button>
+     <button class="btn btn-ghost" style="width:100%;justify-content:flex-start;padding:11px 16px;font-size:13.5px" onclick="go('requests');openReq()">Request a website change</button>
+   </div>
+   <div class="card"><div class="sec-t">Studio7 is on it</div>
+     <p style="font-size:13px;color:var(--taupe)">Your site is monitored around the clock — security, backups, speed, and monthly SEO work are all handled. Anything you need, submit a change request and we're instantly notified.</p>
+     <div style="margin-top:12px;font-family:var(--ui);font-size:12px;color:var(--navy)"><b>Next SEO audit:</b> September 1, 2026</div>
+   </div>
+   <div class="card"><div class="sec-t">Getting connected</div>
+     <div style="font-size:13px;color:var(--taupe)">
+       <div style="margin-bottom:8px"><span class="dot g"></span>Website — <b style="color:var(--green)">live</b></div>
+       <div style="margin-bottom:8px"><span class="dot g"></span>Lead alerts (text + email) — <b style="color:var(--green)">ready</b></div>
+       <div style="margin-bottom:8px"><span class="dot a"></span>Google Business Profile — <b style="color:var(--amber)">awaiting access</b></div>
+       <div><span class="dot a"></span>Search Console — <b style="color:var(--amber)">awaiting access</b></div>
+     </div>
+   </div>
+ </div>`;
+},
+
+/* ---------- BLOG ---------- */
+blog(){
+ return `
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+   <p style="color:var(--taupe);font-size:13.5px">Posts publish straight to the <b>Insights</b> page of your website — fully SEO-optimized.</p>
+   <button class="btn btn-red" onclick="newPost()">+ New post</button>
+ </div>
+ ${blogs.map((b,i)=>`
+  <div class="brow">
+    <img src="assets/blog/${b.img.split('/').pop()}" onerror="this.style.background='var(--cloud)';this.src='assets/mark-navy.svg';this.style.objectFit='contain';this.style.padding='14px'">
+    <div><div class="bt">${esc(b.title)}</div><div class="bm">${esc(b.meta)}</div></div>
+    <div class="sp">
+      <span class="tag ${b.status==='live'?'live':'draft'}">${b.status==='live'?'Live':'Draft'}</span>
+      <button class="icon-btn" title="Edit" onclick="editPost(${i})">Edit</button>
+      <button class="icon-btn" title="Delete" onclick="delPost(${i})">Delete</button>
+    </div>
+  </div>`).join('')}
+ <p class="empty" style="display:${blogs.length?'none':'block'}">No posts yet — write your first one!</p>`;
+},
+
+/* ---------- TEAM ---------- */
+team(){
+ return `
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+   <p style="color:var(--taupe);font-size:13.5px">${team.length} team members — synced live with the <b>Meet Victory</b> page.</p>
+   <button class="btn btn-red" onclick="addMember()">+ Add member</button>
+ </div>
+ <div class="tgrid">
+ ${team.map((m,i)=>`
+  <div class="tcard">
+    ${m.photo?`<img src="assets/team/${m.photo}" onerror="this.remove()">`:`<div style="aspect-ratio:1/1;background:var(--cloud);display:flex;align-items:center;justify-content:center;color:var(--stone);font-size:44px;font-weight:800">${esc(m.name[0]||'?')}</div>`}
+    <div class="in">
+      <div class="nm">${esc(m.name)}</div>
+      <div class="tt">${esc(m.title)}</div>
+      <div class="ops"><button onclick="editMember(${i})">Edit</button><button class="rm" onclick="rmMember(${i})">Remove</button></div>
+    </div>
+  </div>`).join('')}
+ </div>`;
+},
+
+/* ---------- LEADS ---------- */
+leads(){
+ return `
+ <div class="banner blue"><div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.4M12 7.6v.2"/></svg></div><div><b>Lead alerts are armed.</b> The moment someone submits your website contact form, you'll get a text and an email instantly — and they'll appear here. The leads below are samples so you can see how it works.</div></div>
+ <div class="card" style="padding:6px 10px">
+ <table>
+  <tr><th>Lead</th><th>Message</th><th>Received</th><th>Status</th><th></th></tr>
+  ${leads.map((l,i)=>`
+   <tr>
+     <td><b style="color:var(--navy)">${esc(l.n)}</b><div style="font-size:12px;color:var(--taupe)">${esc(l.e)}${l.p&&l.p!=='—'?' · '+esc(l.p):''}</div></td>
+     <td style="max-width:340px"><div style="font-size:13px;color:var(--taupe)">${esc(l.m)}</div></td>
+     <td style="white-space:nowrap;font-size:12.5px;color:var(--taupe)">${esc(l.d)}</td>
+     <td><span class="tag ${l.s==='new'?'new':'done'}">${l.s==='new'?'New':'Contacted'}</span></td>
+     <td><button class="btn btn-ghost" style="padding:7px 14px;font-size:12px" onclick="toggleLead(${i})">${l.s==='new'?'Mark contacted':'Mark new'}</button></td>
+   </tr>`).join('')}
+ </table>
+ </div>`;
+},
+
+/* ---------- CHANGE REQUESTS ---------- */
+requests(){
+ return `
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+   <p style="color:var(--taupe);font-size:13.5px">Want anything changed on the site? Submit it here — <b>Studio7 is notified instantly</b> (text + email).</p>
+   <button class="btn btn-red" onclick="openReq()">+ New request</button>
+ </div>
+ ${reqs.map((r,i)=>`
+  <div class="card" style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+    <div><b style="color:var(--navy)">${esc(r.t)}</b>
+      <div style="font-size:13px;color:var(--taupe);margin-top:3px">${esc(r.d)}</div>
+      <div style="font-family:var(--ui);font-size:11.5px;color:#9aa4ac;margin-top:6px">${esc(r.when)} · Priority: ${esc(r.p)}</div>
+    </div>
+    <span class="tag ${r.s==='done'?'done':(r.s==='prog'?'prog':'new')}">${r.s==='done'?'Completed':(r.s==='prog'?'In progress':'Submitted')}</span>
+  </div>`).join('')}
+ <p class="empty" style="display:${reqs.length?'none':'block'}">No requests yet.</p>`;
+},
+
+/* ---------- REVIEWS ---------- */
+reviews(){
+ return `
+ <div class="banner amber"><div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><div><b>Google Business Profile — awaiting connection.</b> Once access is granted, your live Google reviews sync here automatically (and feed the testimonials on your website). Shown below: the real client reviews currently featured on your site.</div></div>
+ <div class="grid g4" style="margin-bottom:16px">
+   <div class="card stat"><div class="k">Average rating</div><div class="v">5.0 <span class="stars" style="font-size:18px">★★★★★</span></div></div>
+   <div class="card stat"><div class="k">Total reviews</div><div class="v">${REVIEW_SEED.length}</div><div class="d na">From website testimonials</div></div>
+   <div class="card stat"><div class="k">Response rate</div><div class="v">—</div><div class="d na">Live after connect</div></div>
+   <div class="card stat"><div class="k">New this month</div><div class="v">—</div><div class="d na">Live after connect</div></div>
+ </div>
+ <div class="grid g2">
+ ${REVIEW_SEED.map(r=>`
+  <div class="card">
+    <div class="stars">★★★★★</div>
+    <p style="font-size:13.5px;color:#3c4650;margin:10px 0 12px">${esc(r.text)}</p>
+    <b style="color:var(--navy);font-size:13.5px">${esc(r.who.replace(/[—-]\s*$/,''))}</b>
+    <div style="font-family:var(--ui);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--taupe)">${esc(r.role)}</div>
+  </div>`).join('')}
+ </div>`;
+},
+
+/* ---------- SEO ---------- */
+seo(){
+ return `
+ <div class="banner amber"><div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><div><b>Sample data shown.</b> This dashboard goes live with your real numbers the moment Google Business Profile & Search Console access are connected. The layout below is exactly what you'll see.</div></div>
+ <div class="grid g4" style="margin-bottom:16px">
+   <div class="card stat"><div class="k">Clicks · 28 days</div><div class="v">312</div><div class="d">▲ 24%</div></div>
+   <div class="card stat"><div class="k">Impressions</div><div class="v">9,840</div><div class="d">▲ 31%</div></div>
+   <div class="card stat"><div class="k">Avg. position</div><div class="v">12.4</div><div class="d">▲ up from 19.8</div></div>
+   <div class="card stat"><div class="k">Keywords tracked</div><div class="v">24</div><div class="d na">Updated monthly</div></div>
+ </div>
+ <div class="grid g2">
+   <div class="card">
+     <div class="sec-t">Clicks & impressions trend</div>
+     <svg id="seochart" viewBox="0 0 520 200" width="100%"></svg>
+     <div class="legend"><span><span class="sw" style="background:#243747"></span>Impressions</span><span><span class="sw" style="background:#9A3324"></span>Clicks</span></div>
+   </div>
+   <div class="card" style="padding:10px 12px">
+     <div class="sec-t" style="padding:12px 12px 0">Top keywords</div>
+     <table>
+       <tr><th>Keyword</th><th>Position</th><th>Trend</th></tr>
+       <tr><td>leadership consulting chicago</td><td><b>8</b></td><td style="color:var(--green);font-weight:700">▲ 6</td></tr>
+       <tr><td>executive team coaching</td><td><b>11</b></td><td style="color:var(--green);font-weight:700">▲ 4</td></tr>
+       <tr><td>presentation skills training</td><td><b>14</b></td><td style="color:var(--green);font-weight:700">▲ 9</td></tr>
+       <tr><td>team effectiveness consultant</td><td><b>9</b></td><td style="color:var(--green);font-weight:700">▲ 3</td></tr>
+       <tr><td>elephant in the room consulting</td><td><b>1</b></td><td style="color:var(--taupe)">—</td></tr>
+     </table>
+   </div>
+ </div>
+ <div class="card" style="margin-top:16px">
+   <div class="sec-t">Monthly SEO work — included in your plan</div>
+   <div style="font-size:13.5px;color:var(--taupe)">
+     <div style="margin-bottom:7px"><span class="dot g"></span>Monthly SEO audit + fixes — <b style="color:var(--navy)">next: Sept 1</b></div>
+     <div style="margin-bottom:7px"><span class="dot g"></span>Fresh blog content targeting keywords that need improvement</div>
+     <div style="margin-bottom:7px"><span class="dot g"></span>AI search optimization (ChatGPT, Gemini, Grok, Perplexity)</div>
+     <div><span class="dot g"></span>50–100+ business directory listings — <b style="color:var(--amber)">starts after Google connect</b></div>
+   </div>
+ </div>`;
+}
+};
+
+/* ================= actions ================= */
+function toggleLead(i){leads[i].s=leads[i].s==='new'?'contacted':'new';save('leads',leads);render()}
+function rmMember(i){
+ openModal(`<h3>Remove ${esc(team[i].name)}?</h3><p class="msub">They'll be removed from the Meet Victory page on the next sync.</p>
+ <div class="mfoot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+ <button class="btn btn-red" onclick="team.splice(${i},1);save('team',team);closeModal();render();toast('Team member removed — syncs to the live site')">Remove</button></div>`);
+}
+function memberForm(i){
+ const m=i>=0?team[i]:{name:'',title:'',bio:''};
+ openModal(`<h3>${i>=0?'Edit':'Add'} team member</h3><p class="msub">Changes sync to the Meet Victory page.</p>
+ <label>Full name</label><input id="tm-n" value="${esc(m.name)}">
+ <label>Title</label><input id="tm-t" value="${esc(m.title)}">
+ <label>Bio</label><textarea id="tm-b" rows="4">${esc(m.bio)}</textarea>
+ <label>Photo</label><input type="file" accept="image/*" style="padding:9px">
+ <div class="mfoot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+ <button class="btn btn-navy" style="width:auto;margin:0" onclick="saveMember(${i})">${i>=0?'Save changes':'Add member'}</button></div>`);
+}
+function addMember(){memberForm(-1)}
+function editMember(i){memberForm(i)}
+function saveMember(i){
+ const m={name:val('tm-n')||'New Member',title:val('tm-t')||'Team Member',bio:val('tm-b'),photo:i>=0?team[i].photo:''};
+ if(i>=0)team[i]={...team[i],...m};else team.push(m);
+ save('team',team);closeModal();render();toast(i>=0?'Member updated — syncs to the live site':'Member added — syncs to the live site');
+}
+function val(id){return document.getElementById(id).value.trim()}
+function newPost(){postForm(-1)}
+function editPost(i){postForm(i)}
+function postForm(i){
+ const b=i>=0?blogs[i]:{title:'',meta:'Leadership Development · 5 min read',excerpt:'',body:''};
+ openModal(`<h3>${i>=0?'Edit':'New'} blog post</h3><p class="msub">Publishes to the Insights page, SEO fields handled automatically.</p>
+ <label>Title</label><input id="bp-t" value="${esc(b.title)}">
+ <label>Category</label><select id="bp-c">
+   <option>Leadership Development</option><option>Team Effectiveness</option><option>Presentation Impact</option><option>The Elephant</option>
+ </select>
+ <label>Short excerpt (shows on the blog page)</label><textarea id="bp-e" rows="2">${esc(b.excerpt||'')}</textarea>
+ <label>Article body</label><textarea id="bp-b" rows="7" placeholder="Write your article…">${esc(b.body||'')}</textarea>
+ <div class="mfoot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+ <button class="btn btn-navy" style="width:auto;margin:0" onclick="savePost(${i})">${i>=0?'Save changes':'Publish post'}</button></div>`);
+}
+function savePost(i){
+ const p={title:val('bp-t')||'Untitled post',meta:document.getElementById('bp-c').value+' · '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),excerpt:val('bp-e'),body:val('bp-b')};
+ if(i>=0)blogs[i]={...blogs[i],...p};else blogs.unshift({...p,img:'new-insights-1.jpg',status:'live'});
+ save('blogs',blogs);closeModal();render();toast(i>=0?'Post updated':'Post published to your Insights page');
+}
+function delPost(i){
+ openModal(`<h3>Delete "${esc(blogs[i].title)}"?</h3><p class="msub">This removes it from your website's Insights page.</p>
+ <div class="mfoot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+ <button class="btn btn-red" onclick="blogs.splice(${i},1);save('blogs',blogs);closeModal();render();toast('Post deleted')">Delete</button></div>`);
+}
+function openReq(){
+ openModal(`<h3>Request a website change</h3><p class="msub">Studio7 gets notified the second you hit submit — by text and email.</p>
+ <label>What would you like changed?</label><input id="rq-t" placeholder="e.g. Swap the photo on the Results page">
+ <label>Details</label><textarea id="rq-d" rows="4" placeholder="Any specifics, links, or ideas…"></textarea>
+ <label>Priority</label><select id="rq-p"><option>Normal</option><option>High — needed this week</option><option>Low — whenever</option></select>
+ <div class="mfoot"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+ <button class="btn btn-red" onclick="sendReq()">Submit request</button></div>`);
+}
+function sendReq(){
+ reqs.unshift({t:val('rq-t')||'Untitled request',d:val('rq-d'),p:document.getElementById('rq-p').value,s:'new',when:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});
+ save('reqs',reqs);closeModal();cur='requests';render();toast('Request sent — Studio7 has been notified');
+}
+
+/* ================= charts (hand-drawn SVG) ================= */
+function line(points,w,h,max){return points.map((v,i)=>`${(i/(points.length-1))*w},${h-(v/max)*h}`).join(' ')}
+function drawSpark(){
+ const el=document.getElementById('spark');if(!el)return;
+ const d=[28,34,31,40,38,47,44,52,49,58,54,63,60,71,66,74,70,79,83,78,88,84,92,96,90,101,97,108,104,112];
+ const max=120,w=520,h=150;
+ el.innerHTML=`<polyline points="${line(d,w,h,max)}" fill="none" stroke="#243747" stroke-width="3" stroke-linecap="round"/>
+ <polygon points="0,${h} ${line(d,w,h,max)} ${w},${h}" fill="rgba(36,55,71,.08)"/>`;
+}
+function drawCharts(){
+ const el=document.getElementById('seochart');if(!el)return;
+ const imp=[40,46,44,55,52,63,60,72,68,80,76,88,95,90,104,100,115,110,124,120,135,130,144,150,142,158,152,166,160,172];
+ const cl=[8,10,9,12,11,15,13,17,15,19,17,22,24,21,27,25,30,28,33,31,36,34,39,42,38,45,42,49,46,52];
+ const max=180,w=520,h=180;
+ el.innerHTML=`<polyline points="${line(imp,w,h,max)}" fill="none" stroke="#243747" stroke-width="3" stroke-linecap="round"/>
+ <polyline points="${line(cl,w,h,max)}" fill="none" stroke="#9A3324" stroke-width="3" stroke-linecap="round"/>
+ <polygon points="0,${h} ${line(imp,w,h,max)} ${w},${h}" fill="rgba(36,55,71,.06)"/>`;
+}
+/* no login for preview — straight to dashboard */
+window.addEventListener('DOMContentLoaded',function(){doLogin()});
+/* enter on login with Enter key */
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!document.getElementById('login').classList.contains('hide'))doLogin()});
+</script>
+</body>
+</html>
