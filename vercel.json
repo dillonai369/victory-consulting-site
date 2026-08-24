@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [{ "type": "host", "value": "victoryapp.studio7.select" }],
+      "dest": "/app/$1"
+    },
+    { "handle": "filesystem" }
+  ]
+}
