@@ -217,6 +217,7 @@ body.hero-dark .site-header:not(.is-scrolled) .menu-toggle { color: #fff; }
   color: var(--red); transition: gap var(--t-med) var(--ease), color var(--t-fast);
 }
 .link-arrow:after { content: "→"; }
+.link-arrow.long { text-transform: none; letter-spacing: .01em; font-size: .95rem; }
 .link-arrow:hover { gap: 14px; color: var(--navy); }
 
 .menu-toggle { display: none; }
