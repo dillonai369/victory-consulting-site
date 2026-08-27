@@ -7,26 +7,29 @@
 <link rel="icon" href="assets/VC_Logo_Favicon_Navy.svg" type="image/svg+xml">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#243747; --midnight:#131E29; --ink:#0c0d12; --stone:#C4BCB7;
-  --red:#9A3324; --taupe:#5b6670; --cloud:#F5F3F1; --line:#e7e3de;
+  --navy:#253746; --midnight:#131E29; --ink:#3D3935; --stone:#C4BCB7; --gold:#D69A2D;
+  --red:#9A3324; --taupe:#746661; --cloud:#F0EEED; --line:#E8E5E2;
   --green:#3f6f52; --amber:#b07d2a;
-  --sans:"Plus Jakarta Sans",-apple-system,sans-serif; --ui:"Geist",var(--sans);
-  --r:16px; --shadow:0 10px 34px -18px rgba(19,30,41,.25);
+  --sans:"Source Sans 3",-apple-system,sans-serif; --ui:var(--sans);
+  --r:3px; --shadow:0 10px 34px -18px rgba(19,30,41,.25);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--sans);background:#f7f5f3;color:#1d2731;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:#FCFBFA;color:#3D3935;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
 button{font-family:var(--ui);cursor:pointer}
-input,textarea,select{font-family:var(--sans);font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fff;color:#1d2731}
+input,textarea,select{font-family:var(--sans);font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:3px;width:100%;background:#fff;color:#3D3935}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy)}
 label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);margin:14px 0 6px}
 .hide{display:none!important}
 
 /* ===== Login ===== */
-#login{position:fixed;inset:0;background:linear-gradient(155deg,#1b2a37,#131E29 55%,#0d1720);display:flex;align-items:center;justify-content:center;z-index:50}
-.login-card{width:min(420px,92vw);background:#fff;border-radius:22px;padding:42px 40px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+#login{position:fixed;inset:0;background:linear-gradient(155deg,#1b2a37,#131E29 55%,#0d1720);display:flex;align-items:center;justify-content:center;z-index:50;overflow:hidden}
+#login::before{content:"";position:absolute;top:-12%;bottom:-12%;right:-14%;width:44%;background:rgba(255,255,255,.035);transform:skewX(-19deg);pointer-events:none}
+aside{overflow:hidden}
+aside::after{content:"";position:absolute;top:-10%;bottom:-10%;right:-46%;width:60%;background:rgba(255,255,255,.025);transform:skewX(-19deg);pointer-events:none}
+.login-card{width:min(420px,92vw);background:#fff;border-radius:3px;padding:42px 40px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 .login-card img{height:34px;margin-bottom:8px}
 .login-card h1{font-size:22px;color:var(--navy);letter-spacing:-.3px}
 .login-card p.sub{color:var(--taupe);font-size:13.5px;margin-top:4px}
@@ -44,17 +47,17 @@ aside{width:248px;flex:none;background:var(--midnight);color:#fff;display:flex;f
 .side-brand img{height:18px}
 .side-brand .plat{font-family:var(--ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-top:9px}
 nav{padding:14px 12px;flex:1;overflow-y:auto}
-.nav-item{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:11px 14px;border-radius:11px;margin-bottom:3px;text-align:left;transition:background .18s,color .18s}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:11px 14px;border-radius:3px;margin-bottom:3px;text-align:left;transition:background .18s,color .18s}
 .nav-item svg{width:17px;height:17px;flex:none}
 .nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
 .nav-item.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
-.nav-item .pill{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:100px;padding:2px 8px}
+.nav-item .pill{margin-left:auto;background:var(--gold);color:var(--midnight);font-size:10px;font-weight:700;border-radius:100px;padding:2px 8px}
 .side-user{padding:16px 20px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:11px}
 .avatar{width:34px;height:34px;border-radius:50%;background:var(--stone);color:var(--midnight);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
 .side-user .nm{font-size:13px;font-weight:600}
 .side-user .em{font-size:11px;color:rgba(255,255,255,.5)}
 main{flex:1;min-width:0}
-.topbar{position:sticky;top:0;z-index:10;background:rgba(247,245,243,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(252,251,250,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:18px 40px;display:flex;align-items:center;justify-content:space-between}
 .topbar h2{font-size:19px;color:var(--navy);letter-spacing:-.2px}
 .topbar .acts{display:flex;gap:10px;align-items:center}
 .top-link{font-family:var(--ui);font-size:13px;color:var(--taupe);text-decoration:none;border:1.5px solid var(--line);border-radius:100px;padding:8px 16px;background:#fff}
@@ -71,7 +74,7 @@ main{flex:1;min-width:0}
 .stat .d{font-size:12px;margin-top:4px;color:var(--green);font-weight:600}
 .stat .d.na{color:#9aa4ac;font-weight:500}
 .sec-t{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px}
-.banner{display:flex;gap:13px;align-items:flex-start;border-radius:14px;padding:15px 18px;font-size:13px;margin-bottom:20px}
+.banner{display:flex;gap:13px;align-items:flex-start;border-radius:3px;padding:15px 18px;font-size:13px;margin-bottom:20px}
 .banner.amber{background:#faf3e4;border:1px solid #ecd9b0;color:#7c5a1e}
 .banner.blue{background:#eef2f6;border:1px solid #d5dee7;color:var(--navy)}
 .banner b{display:block;margin-bottom:2px}
@@ -105,7 +108,7 @@ tr:last-child td{border-bottom:none}
 
 /* blog list */
 .brow{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
-.brow img{width:110px;height:72px;object-fit:cover;border-radius:10px;flex:none}
+.brow img{width:110px;height:72px;object-fit:cover;border-radius:3px;flex:none}
 .brow .bt{font-weight:700;color:var(--navy);font-size:15px}
 .brow .bm{font-family:var(--ui);font-size:11px;color:var(--taupe);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
 .brow .sp{margin-left:auto;display:flex;gap:6px;align-items:center;flex:none}
@@ -114,7 +117,7 @@ tr:last-child td{border-bottom:none}
 
 /* modal */
 #modal{position:fixed;inset:0;background:rgba(12,16,22,.55);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px}
-.mcard{background:#fff;border-radius:20px;width:min(640px,94vw);max-height:88vh;overflow:auto;padding:30px 32px}
+.mcard{background:#fff;border-radius:3px;width:min(640px,94vw);max-height:88vh;overflow:auto;padding:30px 32px}
 .mcard h3{color:var(--navy);font-size:19px;margin-bottom:4px}
 .mcard .msub{color:var(--taupe);font-size:13px}
 .mfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
@@ -124,7 +127,7 @@ tr:last-child td{border-bottom:none}
 .legend{display:flex;gap:18px;font-family:var(--ui);font-size:11.5px;color:var(--taupe);margin-top:10px}
 .legend .sw{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px}
 
-.toast{position:fixed;bottom:26px;right:26px;background:var(--midnight);color:#fff;padding:14px 20px;border-radius:14px;font-size:13.5px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);z-index:70;display:flex;gap:10px;align-items:center}
+.toast{position:fixed;bottom:26px;right:26px;background:var(--midnight);color:#fff;padding:14px 20px;border-radius:3px;font-size:13.5px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);z-index:70;display:flex;gap:10px;align-items:center}
 @media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
 @media(max-width:760px){aside{display:none}.content{padding:20px 16px 60px}.topbar{padding:14px 16px}}
 </style>
@@ -269,7 +272,7 @@ dash(){
    <div class="card">
      <div class="sec-t">Traffic — last 30 days</div>
      <div class="chart-wrap"><svg id="spark" viewBox="0 0 520 170" width="100%"></svg></div>
-     <div class="legend"><span><span class="sw" style="background:#243747"></span>Visitors</span><span style="color:#9aa4ac">Sample data — live once Google is connected</span></div>
+     <div class="legend"><span><span class="sw" style="background:#253746"></span>Visitors</span><span style="color:#9aa4ac">Sample data — live once Google is connected</span></div>
    </div>
    <div class="card">
      <div class="sec-t">Latest leads</div>
@@ -414,7 +417,7 @@ seo(){
    <div class="card">
      <div class="sec-t">Clicks & impressions trend</div>
      <svg id="seochart" viewBox="0 0 520 200" width="100%"></svg>
-     <div class="legend"><span><span class="sw" style="background:#243747"></span>Impressions</span><span><span class="sw" style="background:#9A3324"></span>Clicks</span></div>
+     <div class="legend"><span><span class="sw" style="background:#253746"></span>Impressions</span><span><span class="sw" style="background:#9A3324"></span>Clicks</span></div>
    </div>
    <div class="card" style="padding:10px 12px">
      <div class="sec-t" style="padding:12px 12px 0">Top keywords</div>
@@ -569,11 +572,11 @@ function renderChart(id,series,opts){
   ov.addEventListener('mouseleave',function(){hv.innerHTML='';});
 }
 function drawSpark(){
-  renderChart('spark',[{name:'Visitors',color:'#243747',data:[28,34,31,40,38,47,44,52,49,58,54,63,60,71,66,74,70,79,83,78,88,84,92,96,90,101,97,108,104,112]}],{h:250});
+  renderChart('spark',[{name:'Visitors',color:'#253746',data:[28,34,31,40,38,47,44,52,49,58,54,63,60,71,66,74,70,79,83,78,88,84,92,96,90,101,97,108,104,112]}],{h:250});
 }
 function drawCharts(){
   renderChart('seochart',[
-    {name:'Impressions',color:'#243747',data:[168,190,176,224,208,256,238,290,270,322,300,354,382,362,418,398,462,440,498,478,542,520,578,604,566,634,608,666,640,692]},
+    {name:'Impressions',color:'#253746',data:[168,190,176,224,208,256,238,290,270,322,300,354,382,362,418,398,462,440,498,478,542,520,578,604,566,634,608,666,640,692]},
     {name:'Clicks',color:'#9A3324',data:[8,10,9,12,11,15,13,17,15,19,17,22,24,21,27,25,30,28,33,31,36,34,39,42,38,45,42,49,46,52]}
   ],{h:270});
 }
