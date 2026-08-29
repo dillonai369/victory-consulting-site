@@ -14,12 +14,12 @@
   --red:#9A3324; --taupe:#746661; --cloud:#F0EEED; --line:#E8E5E2;
   --green:#3f6f52; --amber:#b07d2a;
   --sans:"Source Sans 3",-apple-system,sans-serif; --ui:var(--sans);
-  --r:3px; --shadow:0 10px 34px -18px rgba(19,30,41,.25);
+  --r:10px; --shadow:0 10px 34px -18px rgba(19,30,41,.25);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--sans);background:#FCFBFA;color:#3D3935;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
 button{font-family:var(--ui);cursor:pointer}
-input,textarea,select{font-family:var(--sans);font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:3px;width:100%;background:#fff;color:#3D3935}
+input,textarea,select{font-family:var(--sans);font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;width:100%;background:#fff;color:#3D3935}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy)}
 label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);margin:14px 0 6px}
 .hide{display:none!important}
@@ -29,7 +29,7 @@ label{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-tran
 #login::before{content:"";position:absolute;top:-12%;bottom:-12%;right:-14%;width:44%;background:rgba(255,255,255,.035);transform:skewX(-19deg);pointer-events:none}
 aside{overflow:hidden}
 aside::after{content:"";position:absolute;top:-10%;bottom:-10%;right:-46%;width:60%;background:rgba(255,255,255,.025);transform:skewX(-19deg);pointer-events:none}
-.login-card{width:min(420px,92vw);background:#fff;border-radius:3px;padding:42px 40px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.login-card{width:min(420px,92vw);background:#fff;border-radius:10px;padding:42px 40px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
 .login-card img{height:34px;margin-bottom:8px}
 .login-card h1{font-size:22px;color:var(--navy);letter-spacing:-.3px}
 .login-card p.sub{color:var(--taupe);font-size:13.5px;margin-top:4px}
@@ -47,7 +47,7 @@ aside{width:248px;flex:none;background:var(--midnight);color:#fff;display:flex;f
 .side-brand img{height:18px}
 .side-brand .plat{font-family:var(--ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-top:9px}
 nav{padding:14px 12px;flex:1;overflow-y:auto}
-.nav-item{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:11px 14px;border-radius:3px;margin-bottom:3px;text-align:left;transition:background .18s,color .18s}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;color:rgba(255,255,255,.72);font-size:14px;font-weight:500;padding:11px 14px;border-radius:10px;margin-bottom:3px;text-align:left;transition:background .18s,color .18s}
 .nav-item svg{width:17px;height:17px;flex:none}
 .nav-item:hover{background:rgba(255,255,255,.07);color:#fff}
 .nav-item.on{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
@@ -74,7 +74,7 @@ main{flex:1;min-width:0}
 .stat .d{font-size:12px;margin-top:4px;color:var(--green);font-weight:600}
 .stat .d.na{color:#9aa4ac;font-weight:500}
 .sec-t{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px}
-.banner{display:flex;gap:13px;align-items:flex-start;border-radius:3px;padding:15px 18px;font-size:13px;margin-bottom:20px}
+.banner{display:flex;gap:13px;align-items:flex-start;border-radius:10px;padding:15px 18px;font-size:13px;margin-bottom:20px}
 .banner.amber{background:#faf3e4;border:1px solid #ecd9b0;color:#7c5a1e}
 .banner.blue{background:#eef2f6;border:1px solid #d5dee7;color:var(--navy)}
 .banner b{display:block;margin-bottom:2px}
@@ -108,7 +108,7 @@ tr:last-child td{border-bottom:none}
 
 /* blog list */
 .brow{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
-.brow img{width:110px;height:72px;object-fit:cover;border-radius:3px;flex:none}
+.brow img{width:110px;height:72px;object-fit:cover;border-radius:10px;flex:none}
 .brow .bt{font-weight:700;color:var(--navy);font-size:15px}
 .brow .bm{font-family:var(--ui);font-size:11px;color:var(--taupe);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
 .brow .sp{margin-left:auto;display:flex;gap:6px;align-items:center;flex:none}
@@ -117,7 +117,7 @@ tr:last-child td{border-bottom:none}
 
 /* modal */
 #modal{position:fixed;inset:0;background:rgba(12,16,22,.55);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px}
-.mcard{background:#fff;border-radius:3px;width:min(640px,94vw);max-height:88vh;overflow:auto;padding:30px 32px}
+.mcard{background:#fff;border-radius:10px;width:min(640px,94vw);max-height:88vh;overflow:auto;padding:30px 32px}
 .mcard h3{color:var(--navy);font-size:19px;margin-bottom:4px}
 .mcard .msub{color:var(--taupe);font-size:13px}
 .mfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
@@ -125,9 +125,9 @@ tr:last-child td{border-bottom:none}
 /* chart */
 .chart-wrap{position:relative}
 .legend{display:flex;gap:18px;font-family:var(--ui);font-size:11.5px;color:var(--taupe);margin-top:10px}
-.legend .sw{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px}
+.legend .sw{width:10px;height:10px;border-radius:10px;display:inline-block;margin-right:6px}
 
-.toast{position:fixed;bottom:26px;right:26px;background:var(--midnight);color:#fff;padding:14px 20px;border-radius:3px;font-size:13.5px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);z-index:70;display:flex;gap:10px;align-items:center}
+.toast{position:fixed;bottom:26px;right:26px;background:var(--midnight);color:#fff;padding:14px 20px;border-radius:10px;font-size:13.5px;box-shadow:0 20px 50px -12px rgba(0,0,0,.5);z-index:70;display:flex;gap:10px;align-items:center}
 @media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
 @media(max-width:760px){aside{display:none}.content{padding:20px 16px 60px}.topbar{padding:14px 16px}}
 </style>
