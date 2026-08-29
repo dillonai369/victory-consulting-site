@@ -171,7 +171,7 @@ body.hero-dark .site-header:not(.is-scrolled) .menu-toggle { color: #fff; }
 .hero-video-wrap .hero-scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(10,14,20,.34) 0%, rgba(10,14,20,.30) 45%, rgba(10,14,20,.42) 72%, rgba(10,14,20,.68) 100%);
+    linear-gradient(180deg, rgba(10,14,20,.54) 0%, rgba(10,14,20,.48) 45%, rgba(10,14,20,.58) 72%, rgba(10,14,20,.80) 100%);
 }
 .hero-video-wrap .container { position: relative; z-index: 2; max-width: none; padding: 0 var(--edge) clamp(56px,8vw,104px); width: 100%; }
 .hero-video-wrap .eyebrow { color: rgba(255,255,255,.9); }
@@ -277,7 +277,7 @@ section.tight { padding: clamp(40px, 5vw, 70px) 0; }
 /* Display / H1 — ExtraBold 800, pulled to the Brand Book scale (p.20) */
 h1 {
   font-family: var(--font-sans); font-weight: 800;
-  font-size: clamp(34px, 3.6vw, 48px); line-height: 1.1;
+  font-size: clamp(38px, 4.6vw, 58px); line-height: 1.08;
   letter-spacing: -.015em; max-width: 900px; color: var(--navy);
 }
 .bg-deep h1, .bg-deep-2 h1 { color: #fff; }
@@ -791,7 +791,7 @@ body .creds-section > .container { max-width: none !important; padding-left: 0 !
   .hero-ctas .btn { width: auto; padding: 12px 22px; font-size: 14px; }
   /* Hero headline: tighter, breathing room on the right */
   .hero-video-wrap .container { padding-left: 22px; padding-right: 22px; }
-  .hero-video-wrap h1 { font-size: clamp(29px, 7.6vw, 40px); line-height: 1.14; }
+  .hero-video-wrap h1 { font-size: clamp(31px, 8vw, 43px); line-height: 1.13; }
   .hero-video-wrap .lead { font-size: 15px; margin-top: 16px; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-band { grid-template-columns: repeat(2, 1fr); gap: 36px; }
@@ -958,3 +958,12 @@ body.theme-dark .btn-accent:not(.site-header .btn-accent):hover { background: #c
 body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium on dark */
 /* Key-takeaway callout inside articles: white sans text on the navy card (beats .article p) */
 .article .callout-key p { color: #fff; font-family: var(--font-sans); font-size: 15.5px; margin-bottom: 0; }
+
+/* ============ Hero polish (client feedback 8/28) ============ */
+/* "Elevate Culture" never breaks across lines */
+.hero-video-wrap h1 em { white-space: nowrap; }
+/* Pages without the brand strip: hero copy vertically centered like the rest */
+.hero-video-wrap:not(.has-brands) { align-items: center; }
+.hero-video-wrap:not(.has-brands) > .container { padding-top: clamp(110px, 12vw, 150px); padding-bottom: clamp(70px, 9vw, 120px); }
+/* Insights hero: lift copy toward center above the brand strip */
+.hero-video-wrap.hero-mid > .container { padding-bottom: clamp(360px, 46vh, 450px); }
