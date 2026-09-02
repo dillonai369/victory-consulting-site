@@ -967,3 +967,7 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 .hero-video-wrap:not(.has-brands) > .container { padding-top: clamp(110px, 12vw, 150px); padding-bottom: clamp(70px, 9vw, 120px); }
 /* Insights hero: lift copy toward center above the brand strip */
 .hero-video-wrap.hero-mid > .container { padding-bottom: clamp(360px, 46vh, 450px); }
+/* Testimonials: two-card layout after $2B removal */
+.quotes.two { grid-template-columns: repeat(2, 1fr); }
+.quotes.two .quote.feature { grid-column: span 2; }
+@media (max-width: 900px){ .quotes.two { grid-template-columns: 1fr; } .quotes.two .quote.feature { grid-column: span 1; } }
