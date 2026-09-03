@@ -89,3 +89,9 @@
     });
   }
 })();
+
+// "What's your elephant?" tooltip — tap to toggle on touch devices
+document.querySelectorAll('.tip').forEach(function(t){
+  t.addEventListener('click', function(e){ e.preventDefault(); t.classList.toggle('open'); });
+  document.addEventListener('click', function(e){ if(!t.contains(e.target)) t.classList.remove('open'); });
+});

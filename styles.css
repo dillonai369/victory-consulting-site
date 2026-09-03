@@ -986,3 +986,34 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 /* Two-column card grids collapse to a single stack on mobile */
 .cards.two-col { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 900px) { .cards.two-col { grid-template-columns: 1fr; } }
+
+/* ============ "What's your elephant?" info tooltip ============ */
+.lbl-tip { display: flex; align-items: center; gap: 7px; }
+.tip { position: relative; display: inline-flex; align-items: center; justify-content: center; color: var(--red); cursor: pointer; outline: none; }
+.tip svg { display: block; opacity: .85; transition: opacity .15s; }
+.tip:hover svg, .tip:focus svg, .tip.open svg { opacity: 1; }
+.tip-box {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+  width: min(280px, 74vw); background: var(--navy); color: #FCFBFA;
+  font-size: 13px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none;
+  padding: 12px 15px; border-radius: 10px; box-shadow: 0 14px 34px -12px rgba(19,30,41,.45);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 30;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.tip-box::after {
+  content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: var(--navy);
+}
+.tip:hover .tip-box, .tip:focus .tip-box, .tip.open .tip-box {
+  opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+}
+@media (max-width: 560px) {
+  .lbl-tip { position: relative; }
+  .tip { position: static; }
+  .tip-box {
+    left: 0; right: auto; bottom: calc(100% + 26px);
+    transform: translateY(4px); width: min(300px, calc(100vw - 48px));
+  }
+  .tip:hover .tip-box, .tip:focus .tip-box, .tip.open .tip-box { transform: translateY(0); }
+  .tip-box::after { left: 186px; transform: none; }
+}

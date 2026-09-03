@@ -105,7 +105,12 @@
             <input type="tel" id="phone" name="phone" autocomplete="tel">
           </div>
           <div class="full">
-            <label for="elephant">What's your elephant?</label>
+            <label for="elephant" class="lbl-tip">What's your elephant?
+              <span class="tip" tabindex="0" role="button" aria-label="What does elephant mean?">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+                <span class="tip-box">Your elephant is the issue everyone in your organization knows about but no one talks about &mdash; the unspoken challenge holding your team back.</span>
+              </span>
+            </label>
             <textarea id="elephant" name="elephant" required></textarea>
           </div>
           <div class="full">
