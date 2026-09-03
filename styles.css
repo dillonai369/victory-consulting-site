@@ -982,3 +982,7 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 .form-legal.dark a { color: var(--gold); }
 .form-grid .form-legal.full { grid-column: span 2; margin-top: 2px; }
 @media (max-width: 560px){ .form-grid .form-legal.full { grid-column: span 1; } }
+
+/* Two-column card grids collapse to a single stack on mobile */
+.cards.two-col { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) { .cards.two-col { grid-template-columns: 1fr; } }
