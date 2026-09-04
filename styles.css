@@ -1061,7 +1061,11 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 .hero-stacked .line1 { display: flex; justify-content: center; gap: clamp(28px, 4.5vw, 70px); flex-wrap: wrap; }
 .hero-stacked .line2 {
   display: inline-block; position: relative; font-style: normal;
-  color: #fff !important; margin-top: 6px;
+  margin-top: 6px;
+  background: linear-gradient(97deg, #ffffff 0%, #ffffff 58%, #F8E7C0 78%, #ECBE63 92%, var(--gold) 100%);
+  filter: drop-shadow(0 2px 14px rgba(0,0,0,.45));
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent !important; -webkit-text-fill-color: transparent;
 }
 /* gold underline cut at the brand's 19° angle */
 .hero-stacked .line2::after {
