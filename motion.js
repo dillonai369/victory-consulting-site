@@ -80,11 +80,21 @@
 
   /* ---------- Team flip cards ---------- */
   document.querySelectorAll('.team-grid .person').forEach(function (card) {
+    var img = card.querySelector('.photo img');
+    if (!img) return;
+    var slug = (img.getAttribute('src').match(/team\/([a-z-]+)\.jpg/) || [])[1];
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.addEventListener('click', function (e) { if (e.target.closest('.profile-link')) return; card.classList.toggle('flipped'); });
+    card.style.cursor = 'pointer';
+    function isMobile(){ return window.matchMedia('(max-width: 900px)').matches; }
+    function act(e){
+      if (isMobile() && slug) { window.location.href = 'team/' + slug + '.html'; return; }
+      if (e && e.target && e.target.closest('.profile-link')) return;
+      card.classList.toggle('flipped');
+    }
+    card.addEventListener('click', act);
     card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(e); }
     });
   });
 
