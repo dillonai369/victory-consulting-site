@@ -1055,3 +1055,27 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 /* card hint text per device */
 .flip-hint .hint-m { display: none; }
 @media (max-width: 900px) { .flip-hint .hint-d { display: none; } .flip-hint .hint-m { display: inline; } }
+
+/* ============ Home hero — Joe's centered stacked headline ============ */
+.hero-video-wrap .hero-stacked { max-width: none; text-align: center; margin: 0 auto; }
+.hero-stacked .line1 { display: flex; justify-content: center; gap: clamp(28px, 4.5vw, 70px); flex-wrap: wrap; }
+.hero-stacked .line2 {
+  display: inline-block; position: relative; font-style: normal;
+  color: #fff !important; margin-top: 6px;
+}
+/* gold underline cut at the brand's 19° angle */
+.hero-stacked .line2::after {
+  content: ""; position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%) skewX(-19deg);
+  width: 56%; height: 5px; background: var(--gold); border-radius: 1px;
+}
+/* center the rest of the home hero to match */
+.hero-video-wrap.has-brands.hero-centered .container { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.hero-centered .lead { margin-left: auto; margin-right: auto; }
+.hero-centered .hero-ctas { justify-content: center; }
+.hero-centered .eyebrow { justify-content: center; }
+@media (max-width: 760px) {
+  .hero-stacked .line1 { flex-direction: column; gap: 2px; }
+  .hero-stacked .line2 { margin-top: 4px; }
+  .hero-stacked .line2::after { bottom: -10px; height: 4px; }
+  .hero-centered .hero-ctas { flex-direction: column; align-items: center; }
+}
