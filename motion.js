@@ -47,6 +47,13 @@
 
   /* ---------- Count-up stats ---------- */
   var counters = document.querySelectorAll('.big-stat .num[data-count]');
+  function setFinal(el){
+    var t=parseInt(el.getAttribute('data-count'),10);
+    el.textContent=t.toLocaleString('en-US')+(el.getAttribute('data-suffix')||'');
+  }
+  if (counters.length && (reduced || !('IntersectionObserver' in window))) {
+    counters.forEach(setFinal);
+  }
   if (counters.length && !reduced && 'IntersectionObserver' in window) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -64,6 +71,8 @@
           if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
+        /* safety net: if the animation failed for any reason, show the real number */
+        setTimeout(function(){ if(/^0?$/.test(el.textContent.trim())) setFinal(el); }, 3000);
       });
     }, { threshold: 0.4 });
     counters.forEach(function (el) { cio.observe(el); });
@@ -73,7 +82,7 @@
   document.querySelectorAll('.team-grid .person').forEach(function (card) {
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.addEventListener('click', function () { card.classList.toggle('flipped'); });
+    card.addEventListener('click', function (e) { if (e.target.closest('.profile-link')) return; card.classList.toggle('flipped'); });
     card.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
     });

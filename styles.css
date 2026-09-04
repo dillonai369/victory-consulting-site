@@ -1017,3 +1017,17 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
   .tip:hover .tip-box, .tip:focus .tip-box, .tip.open .tip-box { transform: translateY(0); }
   .tip-box::after { left: 186px; transform: none; }
 }
+
+
+/* ============ Team profile pages ============ */
+.profile-grid { display: grid; grid-template-columns: 340px 1fr; gap: clamp(32px, 4.5vw, 64px); align-items: start; margin-top: 10px; }
+.profile-photo img { width: 100%; border-radius: 10px; border: 1px solid var(--line); }
+.profile-body h1 { margin-bottom: 20px; }
+.profile-body p { color: var(--taupe); font-size: 16.5px; line-height: 1.7; margin-bottom: 15px; max-width: 660px; }
+.profile-hero { padding-bottom: clamp(40px, 6vw, 80px); }
+@media (max-width: 900px) {
+  .profile-grid { grid-template-columns: 1fr; gap: 24px; }
+  .profile-photo { max-width: 300px; }
+}
+/* card-back link to full profile */
+.person .profile-link { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
