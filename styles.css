@@ -1025,6 +1025,8 @@ body.theme-dark .quote::before { color: var(--gold); } /* stars — gold premium
 .profile-photo img { width: 100%; border-radius: 10px; border: 1px solid var(--line); }
 .profile-body h1 { margin-bottom: 20px; }
 .profile-body p { color: var(--taupe); font-size: 16.5px; line-height: 1.7; margin-bottom: 15px; max-width: 660px; }
+.profile-body ul { color: var(--taupe); font-size: 16.5px; line-height: 1.7; margin: 0 0 15px 22px; max-width: 640px; display: grid; gap: 8px; padding: 0; }
+.profile-body ul li { list-style: disc; }
 .profile-hero { padding-bottom: clamp(40px, 6vw, 80px); }
 .profile-hero > .container { max-width: 1010px; }
 /* Mobile: centered stack with bordered, shadowed photo */
