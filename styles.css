@@ -179,8 +179,8 @@ body.hero-dark .site-header:not(.is-scrolled) .menu-toggle { color: #fff; }
 .hero-video-wrap h1 { color: #fff; max-width: 940px; text-shadow: 0 2px 30px rgba(0,0,0,.35); }
 .hero-video-wrap h1 em { color: var(--stone); }
 .hero-video-wrap .lead { color: rgba(255,255,255,.92); text-shadow: 0 1px 16px rgba(0,0,0,.35); }
-.hero-video-wrap .lead .lead-gold { color: #F2CC80; font-weight: 800; text-shadow: 0 0 10px rgba(242,204,128,.6), 0 0 26px rgba(236,190,99,.35), 0 1px 16px rgba(0,0,0,.35); }
-.hero-video-wrap .lead .lead-focus { color: #fff; font-weight: 700; letter-spacing: .01em; text-shadow: 0 0 8px rgba(255,255,255,.45), 0 1px 16px rgba(0,0,0,.35); }
+.hero-video-wrap .lead .lead-gold { color: #E6B863; font-weight: 800; text-shadow: 0 1px 16px rgba(0,0,0,.35); }
+.hero-video-wrap .lead .lead-focus { color: #fff; font-weight: 700; letter-spacing: .01em; text-shadow: 0 1px 16px rgba(0,0,0,.35); }
 .hero-video-wrap .rotator { color: var(--stone); }
 .hero-media-mobile { display: none; }
 .hero-video-wrap .btn-outline { color: #fff; border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.06); }
