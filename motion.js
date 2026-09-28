@@ -114,3 +114,60 @@ document.querySelectorAll('.tip').forEach(function(t){
   t.addEventListener('click', function(e){ e.preventDefault(); t.classList.toggle('open'); });
   document.addEventListener('click', function(e){ if(!t.contains(e.target)) t.classList.remove('open'); });
 });
+
+/* ===== FORM SPAM SCORING =====
+   Tags likely-spam submissions in the email subject so Victory can see at a
+   glance what to ignore. Nothing is ever blocked — every submission still sends. */
+(function () {
+  var PHRASES = [
+    // permission-to-decline closers (strongest signal — real leads never pre-apologize)
+    'not interested', 'no hard feelings', 'close the loop', "isn't a priority",
+    'unsubscribe', 'remove you from', 'unsolicited',
+    // lending / merchant cash advance
+    'hard pull', 'no pg', 'line of credit', ' loc ', 'percent a month', '% a month',
+    'approved in 24', 'within 24 hours', 'funding', 'capital', 'working capital',
+    // fake investor / M&A bait
+    'family office', 'your vertical', 'in your industry', 'acquisition',
+    'capital markets', 'investors', 'private equity',
+    // generic cold outreach boilerplate
+    'circling back', 'following up on my previous', 'brief conversation',
+    'quick sync', 'quick chat', 'minutes of your time', 'no-commitment',
+    'growth channel', 'found this email', 'found your email', 'saw your website',
+    'seo', 'rank higher', 'backlinks', 'lead generation', 'cold email',
+    'web design', 'guest post', 'crypto', 'bitcoin', 'loan'
+  ];
+  var BAD_TLD = /\.(info|top|xyz|click|buzz|cyou|shop|online|site)$/i;
+  var loaded = Date.now();
+
+  function score(form) {
+    var g = function (n) { var e = form.querySelector('[name="' + n + '"]'); return e ? String(e.value || '') : ''; };
+    var msg = g('message'), name = g('name'), email = g('email'), phone = g('phone');
+    var blob = (name + ' ' + msg).toLowerCase();
+    var s = 0;
+
+    if (/https?:\/\/|www\./i.test(msg)) s += 3;           // links in an inquiry
+    if (/<a\s|\[url|\[link/i.test(msg)) s += 4;            // markup = bot
+    var hits = 0;
+    for (var i = 0; i < PHRASES.length; i++) if (blob.indexOf(PHRASES[i]) !== -1) hits++;
+    s += hits * 2;
+    if (/@/.test(email) && BAD_TLD.test(email.split('@')[1] || '')) s += 2;
+    if (msg.replace(/\s/g, '').length < 15) s += 1;        // near-empty
+    if (Date.now() - loaded < 4000) s += 3;                // filled faster than a human reads
+    if (/(.)\1{6,}/.test(phone.replace(/\D/g, ''))) s += 2; // 0000000000
+    if (/[А-Яа-яЁё一-鿿]/.test(msg)) s += 2;        // cyrillic / CJK
+    if ((msg.match(/[A-Z]/g) || []).length > msg.length * 0.5 && msg.length > 25) s += 1;
+    return s;
+  }
+
+  document.querySelectorAll('form[action*="formsubmit.co"]').forEach(function (form) {
+    form.addEventListener('submit', function () {
+      try {
+        if (score(form) < 4) return;
+        var subj = form.querySelector('input[name="_subject"]');
+        if (subj && subj.value.indexOf('LIKELY SPAM') === -1) {
+          subj.value = '🔴 LIKELY SPAM — ' + subj.value;
+        }
+      } catch (e) { /* never block a real submission */ }
+    }, true);
+  });
+})();
