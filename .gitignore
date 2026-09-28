@@ -1,2 +1,5 @@
 .DS_Store
 */.DS_Store
+
+# FUSE mount artifacts — never publish
+.fuse_hidden*
