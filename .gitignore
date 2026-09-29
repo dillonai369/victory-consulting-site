@@ -3,3 +3,9 @@
 
 # FUSE mount artifacts — never publish
 .fuse_hidden*
+
+# Retired backend app — holding page only, never republish the data or assets
+app/assets/
+app/team-data.json
+app/blog-data.json
+app/review-data.json
