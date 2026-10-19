@@ -33,7 +33,6 @@
   <div class="sp"></div>
   <div class="saved" id="saved" hidden><i></i> Saved on this device</div>
   <div class="prog" id="prog" role="status" aria-label="Progress"><div class="bar"><i style="width:0%"></i></div><span class="lbl">0 of 3</span></div>
-  <div class="vtog"><a href="/otl/" class="on">A <em>original</em></a><a href="/otl/b/">B <em>new</em></a></div>
 </div></div>
 
 <div class="wrap">
@@ -720,6 +719,11 @@
     fd.append('_captcha', 'false');
     fd.append('_honey', $('f-honey').value);
     fd.append('_replyto', $('f-email').value.trim());
+    /* Delivered to Kelly and Sarah at victoryconsulting.com. Addresses are
+       assembled at runtime rather than sitting in the page source, so
+       address-harvesting crawlers find nothing. */
+    var AT = String.fromCharCode(64), VC = 'victoryconsulting.com';
+    fd.append('_cc', ['kelly', 'sarah'].map(function (n) { return n + AT + VC; }).join(','));
     fd.append('Facilitator', R.name);
     fd.append('Email', $('f-email').value.trim());
     if ($('f-phone').value.trim()) fd.append('Phone', $('f-phone').value.trim());

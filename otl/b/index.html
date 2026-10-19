@@ -445,6 +445,11 @@
     fd.append('_captcha', 'false');
     fd.append('_honey', $('b-honey').value);
     fd.append('_replyto', R.email);
+    /* Delivered to Kelly and Sarah at victoryconsulting.com. Addresses are
+       assembled at runtime rather than sitting in the page source, so
+       address-harvesting crawlers find nothing. */
+    var AT = String.fromCharCode(64), VC = 'victoryconsulting.com';
+    fd.append('_cc', ['kelly', 'sarah'].map(function (n) { return n + AT + VC; }).join(','));
     fd.append('Facilitator', R.name);
     fd.append('Email', R.email);
     if (R.phone) fd.append('Phone', R.phone);
