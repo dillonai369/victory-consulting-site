@@ -445,11 +445,12 @@
     fd.append('_captcha', 'false');
     fd.append('_honey', $('b-honey').value);
     fd.append('_replyto', R.email);
-    /* Delivered to Kelly and Sarah at victoryconsulting.com. Addresses are
-       assembled at runtime rather than sitting in the page source, so
-       address-harvesting crawlers find nothing. */
+    /* The primary endpoint hash already resolves to sarah@victoryconsulting.com,
+       so Sarah is covered without a CC — adding her there sent her a duplicate of
+       every response. Kelly is the only CC. Assembled at runtime so the address
+       isn't sitting in the page source for crawlers to harvest. */
     var AT = String.fromCharCode(64), VC = 'victoryconsulting.com';
-    fd.append('_cc', ['kelly', 'sarah'].map(function (n) { return n + AT + VC; }).join(','));
+    fd.append('_cc', 'kelly' + AT + VC);
     fd.append('Facilitator', R.name);
     fd.append('Email', R.email);
     if (R.phone) fd.append('Phone', R.phone);
