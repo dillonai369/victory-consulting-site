@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg">
+<title>OTL Schedule Builder — Facilitator Availability 2027</title>
+<meta name="description" content="Tell us when you can lead OTL cohorts in 2027.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Victory Consulting">
+<meta property="og:url" content="https://www.victoryconsulting.com/otl/b/">
+<meta property="og:title" content="OTL Schedule Builder — Facilitator Availability 2027">
+<meta property="og:description" content="Tell us when you can lead OTL cohorts in 2027.">
+<meta property="og:image" content="https://www.victoryconsulting.com/otl/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/otl/shared.css">
+</head>
+<body>
+
+<div class="appbar"><div class="in">
+  <div class="logo"><img class="l" alt="Victory Consulting" src="/assets/logo-horizontal-color.svg"><img class="d" alt="Victory Consulting" src="/assets/logo-horizontal-reversed.svg"></div>
+  <div class="ttl"><span>Facilitator availability</span>OTL Schedule Builder &middot; 2027</div>
+  <div class="sp"></div>
+  <div class="saved" id="saved" hidden><i></i> Saved on this device</div>
+  <div class="vtog"><a href="/otl/">A <em>original</em></a><a href="/otl/b/" class="on">B <em>new</em></a></div>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="lede">
+      <div class="eyebrow">OTL Schedule Builder &middot; 2027</div>
+      <h1>When can you lead OTL cohorts next year?</h1>
+      <p class="big">Four short steps. We'll ask what you want to take on, when you like to work, and what's already blocked &mdash; then show you the whole thing before anything is sent.</p>
+      <div class="due"><span class="ic" aria-hidden="true">!</span><div>Please send your response by <b>Friday, October 23, 2026</b></div></div>
+    </div>
+    <div class="stack">
+      <div class="facts">
+        <div><b>10 sessions</b>Each cohort meets once every four weeks, across 2027.</div>
+        <div><b>Same slot all year</b>A cohort keeps one day and time for all 10 sessions.</div>
+        <div><b>2 hours each</b>15 minutes before the 90-minute session, and 15 after.</div>
+      </div>
+      <div class="rail" id="rail"></div>
+    </div>
+  </header>
+
+  <!-- 1 ---------------------------------------------------------- -->
+  <section class="screen" id="sc1">
+    <header>
+      <h2>How much do you want to take on?</h2>
+      <p>Start here so everything after this fits inside your limits. Most facilitators carry 12 to 16 cohorts.</p>
+    </header>
+    <div class="bigq">
+      <label class="field" for="b-min">Fewest cohorts<input type="number" id="b-min" min="1" max="16"></label>
+      <label class="field" for="b-max">Most cohorts<input type="number" id="b-max" min="1" max="16"></label>
+      <label class="field" for="b-maxday">Most sessions in one day<select id="b-maxday"><option value="">Choose</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+      <label class="field" for="b-b2b">Most back-to-back<select id="b-b2b"><option value="">Choose</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+    </div>
+    <p class="small muted">Back-to-back means two sessions starting two hours apart, so one ends as the next begins.</p>
+    <div class="readout" id="r1">Choose your limits to see what that works out to.</div>
+    <div class="navrow"><span class="sp"></span><button type="button" class="btn" data-go="2">Next: when you work</button></div>
+  </section>
+
+  <!-- 2 ---------------------------------------------------------- -->
+  <section class="screen" id="sc2" hidden>
+    <header>
+      <h2>When do you like to work?</h2>
+      <p>One grid, three answers. Everything starts as <b>Works</b>. Click once to mark a time you'd <b>prefer</b>, twice to rule it out. Drag to do a run of them.</p>
+    </header>
+    <div class="pkey">
+      <span><i class="k-open"></i>Works &mdash; happy to be scheduled</span>
+      <span><i class="k-best"></i>Prefer &mdash; give me these first</span>
+      <span><i class="k-block"></i>Never &mdash; don't schedule me</span>
+    </div>
+    <p class="pnote">Each time is when the 90-minute session starts. Your 2 hours includes 15 minutes either side, so a 10:00 session means you're busy 9:45 to 11:45. These are shown in your own time zone, and you don't have to lead in it.</p>
+    <div class="pgridwrap"><div id="b-grid"></div></div>
+    <div class="readout" id="r2"></div>
+    <div class="navrow"><button type="button" class="btn ghost" data-go="1">Back</button><span class="sp"></span><button type="button" class="btn" data-go="3">Next: what's blocked</button></div>
+  </section>
+
+  <!-- 3 ---------------------------------------------------------- -->
+  <section class="screen" id="sc3" hidden>
+    <header><h2>Anything already blocked?</h2></header>
+    <div class="why">
+      <span class="ic" aria-hidden="true">!</span>
+      <div><b>Read this before you start listing dates</b>
+      <p>Every slot runs <b>10 times</b> across the year, on fixed dates. If you're away for even one of them, we can't give you that slot at all. So a single week in July can cost you a Tuesday for the whole of 2027. Only list what you actually know &mdash; you can send changes later, and a rough guess here costs you more than it saves us.</p></div>
+    </div>
+    <h3>Weeks of the block</h3>
+    <p class="small muted">Each block runs over four weeks and a cohort always lands in the same one. If a particular week never works for you, say so here.</p>
+    <div id="b-weeks"></div>
+    <h3>Dates you already know you're away</h3>
+    <p class="small muted">Optional. Only the dates that land on a session matter, and we'll tell you which ones do.</p>
+    <div class="row">
+      <label class="field" for="b-af">Away from<input type="date" id="b-af" min="2027-01-01" max="2027-12-31"></label>
+      <label class="field" for="b-at">Through<input type="date" id="b-at" min="2027-01-01" max="2027-12-31"></label>
+      <button type="button" class="btn ghost" id="b-add">Add these dates</button>
+    </div>
+    <div id="b-amsg" role="status" aria-live="polite"></div>
+    <div id="b-alist" class="chipsrow"></div>
+    <div class="readout" id="r3"></div>
+    <div class="navrow"><button type="button" class="btn ghost" data-go="2">Back</button><span class="sp"></span><button type="button" class="btn" data-go="4">Next: review and send</button></div>
+  </section>
+
+  <!-- 4 ---------------------------------------------------------- -->
+  <section class="screen" id="sc4" hidden>
+    <header><h2>Here's what you're telling us</h2><p>Check it over, then send. Nothing leaves this page until you press the button.</p></header>
+    <div class="rev" id="b-rev"></div>
+    <label class="commit"><input type="checkbox" id="b-commit"><span><b>I can commit to these.</b> I understand each slot I've offered runs on all 10 of its dates through 2027, and there are no substitutes.</span></label>
+    <div class="sendgrid">
+      <label class="field" for="b-name">Your full name<input type="text" id="b-name" autocomplete="name" placeholder="First and last"></label>
+      <label class="field" for="b-email">Your email<input type="email" id="b-email" autocomplete="email" placeholder="you@example.com"></label>
+      <label class="field" for="b-phone">Phone <span class="hint">Optional</span><input type="text" id="b-phone" autocomplete="tel"></label>
+      <label class="field" for="b-tz">Your home time zone<select id="b-tz"><option value="ET">Eastern</option><option value="CT">Central</option><option value="MT">Mountain</option><option value="PT">Pacific</option></select></label>
+    </div>
+    <label class="field" for="b-notes">Anything else we should know <span class="hint">Optional. Notes don't change your availability.</span><textarea id="b-notes"></textarea></label>
+    <input type="text" id="b-honey" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div id="b-errors" role="alert"></div>
+    <div class="navrow"><button type="button" class="btn ghost" data-go="3">Back</button><span class="sp"></span><button type="button" class="btn" id="b-send">Send my availability</button></div>
+    <div id="b-result" hidden>
+      <div class="sent">
+        <div class="hd"><span class="ic" aria-hidden="true">&#10003;</span><div><b>Your availability is in.</b><span id="b-meta"></span></div></div>
+        <p class="small"><b>Keep the code below</b> if you want to change your answers later. Paste it into the box at the bottom of this page, make your changes, and send again.</p>
+        <textarea id="b-code" class="code" readonly aria-label="Your response code"></textarea>
+        <div class="row"><button type="button" class="btn ghost small" id="b-copy">Copy my code</button></div>
+      </div>
+    </div>
+  </section>
+
+  <details class="resume">
+    <summary>Already sent a response and need to change it?</summary>
+    <div class="stack" style="margin-top:11px">
+      <textarea id="b-load" class="code" placeholder="Paste the response code you were given" aria-label="Earlier response code"></textarea>
+      <div class="row"><button type="button" class="btn ghost small" id="b-loadbtn">Load my earlier answers</button><span id="b-loadmsg" class="small muted" role="status"></span></div>
+    </div>
+  </details>
+</div>
+
+<div class="sendbar"><div class="in">
+  <div class="left"><div class="count" id="b-bar"></div><div class="todo" id="b-todo"></div></div>
+  <button type="button" class="btn" id="b-barbtn">Review and send</button>
+</div></div>
+
+<script src="/otl/shared.js"></script>
+<script>
+/* Version B — same scheduling engine and same output as Version A, different
+   question order. Capacity first, one merged availability grid, exceptions
+   last with the 10-date rule explained before anyone starts guessing. */
+(function () {
+  'use strict';
+  var OTL = window.OTL, ui = OTL.ui, el = ui.el, $ = function (id) { return document.getElementById(id); };
+  var CFG = OTL.defaults(), STARTS = OTL.starts(CFG), WDS = OTL.weekDays(CFG), DAYS = OTL.orderedDays(CFG);
+  var MAXPREF = 16, GAP = CFG.prep + CFG.live + CFG.log, PERDAY = 4, KEY = 'otl-availability-draft-v2';
+  var ENDPOINT = 'https://formsubmit.co/ajax/a00bfd01970d0055b22d79d36049baca';
+  var SHAPE = { none: 'No preference', cluster: 'Clustered into fewer, heavier weeks',
+    spread: 'Spread out for a lighter, steady load', oneday: 'All on the same day of the week' };
+  var BCS = [{ id: 'BC1', tz: 'ET', from: 480, to: 1020 }, { id: 'BC2', tz: 'ET', from: 480, to: 1020 }, { id: 'BC3', tz: 'CT', from: 480, to: 960 },
+    { id: 'BC4', tz: 'MT', from: 480, to: 960 }, { id: 'BC5', tz: 'PT', from: 480, to: 1020 }, { id: 'ATG/ES/HQ', tz: 'PT', from: 480, to: 840 }];
+  function bcsAt(t) { return BCS.filter(function (b) { var o = OTL.ZOFF[b.tz]; return t >= b.from + o && t + CFG.live <= b.to + o; }).map(function (b) { return b.id; }); }
+  var ALLOWED = STARTS.map(function (t, i) { return bcsAt(t).length ? i : -1; }).filter(function (i) { return i >= 0; });
+  function covLabel(ids) { return ids.length === BCS.length ? 'All six' : ids.length === 1 ? ids[0] + ' only' : ids.join(', '); }
+
+  var R = OTL.blankResponse(CFG); R.maxDay = null; R.b2bMax = null;
+  var S = { never: {}, best: {} };
+  DAYS.forEach(function (d) { S.never[d] = {}; S.best[d] = {}; });
+  var step = 1, commit = false, sending = false;
+  function off() { return OTL.ZOFF[R.tz] || 0; }
+  function dayCap() { return R.maxDay ? Math.max(1, Math.min(PERDAY, +R.maxDay)) : 0; }
+  function runLen(list) {
+    var a = list.map(function (j) { return STARTS[j]; }).sort(function (x, y) { return x - y; }), best = a.length ? 1 : 0, L = 1;
+    for (var k = 1; k < a.length; k++) { L = a[k] - a[k - 1] === GAP ? L + 1 : 1; if (L > best) best = L; }
+    return best;
+  }
+  function awayOn(iso) { for (var i = 0; i < R.blackouts.length; i++) if (R.blackouts[i].d === iso) return R.blackouts[i]; return null; }
+  function killed(wd, i) {
+    var t = STARTS[i], a = t - CFG.prep, b = t + CFG.live + CFG.log;
+    return OTL.datesFor(CFG, wd.w, wd.d).some(function (iso) {
+      var x = awayOn(iso); return x && (x.from === null || x.from === undefined || (x.from < b && x.to > a));
+    });
+  }
+
+  /* B asks per weekday; the engine stores per week-and-weekday. Expand on the
+     way out so the response code is byte-identical in shape to Version A's. */
+  function sync() {
+    var rows = {};
+    OTL.DAYS.forEach(function (d) {
+      rows[d] = STARTS.map(function (_, i) {
+        return (DAYS.indexOf(d) < 0 || ALLOWED.indexOf(i) < 0 || S.never[d][i]) ? '0' : '1';
+      }).join('');
+    });
+    R.grid = rows;
+    var picks = {}, total = 0;
+    WDS.forEach(function (wd) {
+      if (!(+R.weeks[wd.w - 1])) return;
+      var day = wd.d, chosen = [];
+      ALLOWED.forEach(function (i) {
+        if (!S.best[day][i] || S.never[day][i] || total >= MAXPREF) return;
+        if (dayCap() && chosen.length >= dayCap()) return;
+        if (chosen.some(function (j) { return Math.abs(STARTS[j] - STARTS[i]) < GAP; })) return;
+        if (R.b2bMax && runLen(chosen.concat([i])) > Math.max(1, +R.b2bMax)) return;
+        if (killed(wd, i)) return;
+        chosen.push(i); total++;
+      });
+      if (chosen.length) picks[wd.key] = chosen;
+    });
+    R.picks = picks;
+    var conf = {}; WDS.forEach(function (wd) { conf[wd.key] = 'yes'; }); R.confirm = conf;
+    R.byWeek = true;
+    R.grids = [1, 2, 3, 4].map(function (w) {
+      var g = JSON.parse(JSON.stringify(rows));
+      DAYS.forEach(function (d) {
+        (picks['W' + w + '-' + d] || []).forEach(function (i) { if (g[d].charAt(i) === '1') g[d] = g[d].slice(0, i) + '2' + g[d].slice(i + 1); });
+      });
+      return g;
+    });
+    R.best = S.best; R.commit = commit;
+  }
+  function save() { try { sync(); localStorage.setItem(KEY, JSON.stringify(R)); } catch (e) {} }
+
+  /* Accept a draft or a pasted code from either version. */
+  function adopt(x) {
+    var b = OTL.blankResponse(CFG), k;
+    for (k in b) if (x[k] !== undefined && x[k] !== null) b[k] = x[k];
+    b.fs = CFG.firstStart; b.iv = CFG.interval;
+    b.maxDay = (x.maxDay === null || x.maxDay === undefined) ? null : x.maxDay;
+    b.b2bMax = (x.b2bMax === null || x.b2bMax === undefined) ? null : x.b2bMax;
+    b.email = x.email || ''; b.phone = x.phone || '';
+    R = b; commit = !!x.commit;
+    DAYS.forEach(function (d) { S.never[d] = {}; S.best[d] = {}; });
+    if (x.fs === CFG.firstStart && x.iv === CFG.interval && x.grid) {
+      DAYS.forEach(function (d) {
+        var row = x.grid[d] || '';
+        ALLOWED.forEach(function (i) { if (row.charAt(i) === '0') S.never[d][i] = 1; });
+      });
+      if (x.best) DAYS.forEach(function (d) { Object.keys(x.best[d] || {}).forEach(function (i) { S.best[d][+i] = 1; }); });
+      else if (x.picks) Object.keys(x.picks).forEach(function (key) {
+        var m = /^W\d-([A-Z]{3})$/.exec(key); if (!m) return;
+        (x.picks[key] || []).forEach(function (i) { if (!S.never[m[1]][i]) S.best[m[1]][+i] = 1; });
+      });
+    }
+    sync();
+  }
+  try { var dr = JSON.parse(localStorage.getItem(KEY) || 'null'); if (dr && dr.grid) adopt(dr); } catch (e) {}
+
+  /* ---------- the one availability grid ---------- */
+  var painting = null;
+  function st(d, i) { return S.never[d][i] ? 2 : S.best[d][i] ? 1 : 0; }
+  function setSt(d, i, v) { delete S.never[d][i]; delete S.best[d][i]; if (v === 1) S.best[d][i] = 1; else if (v === 2) S.never[d][i] = 1; }
+  function renderGrid() {
+    var host = ui.clear($('b-grid')), cells = {}, prev = null;
+    var g = el('div', { class: 'pgrid', role: 'group', style: '--cols:' + DAYS.length, 'aria-label': 'Your weekly availability' });
+    g.appendChild(el('div', { class: 'ph l', text: 'Start, ' + OTL.ZNAME[R.tz] }));
+    DAYS.forEach(function (d) { g.appendChild(el('div', { class: 'ph' }, [el('span', { class: 'lg', text: OTL.DLONG[d] }), el('span', { class: 'sm', text: OTL.DSHORT[d] })])); });
+    g.appendChild(el('div', { class: 'ph r', text: 'Business centers' }));
+    function look(bt, d, i) {
+      var v = st(d, i);
+      bt.className = 'pc' + (v === 1 ? ' p' : v === 2 ? ' x' : '') + (bt.dataset.h ? ' hr0' : '');
+      bt.textContent = v === 1 ? '★' : v === 2 ? '✕' : '';
+      bt.setAttribute('aria-pressed', String(v > 0));
+      bt.setAttribute('aria-label', OTL.DLONG[d] + ' ' + OTL.fmtTime(STARTS[i] - off()) + ': ' + ['works', 'preferred', 'never available'][v]);
+    }
+    function apply(d, i, v) { if (st(d, i) === v) return; setSt(d, i, v); look(cells[d + i], d, i); touched(); }
+    ALLOWED.forEach(function (i) {
+      var t = STARTS[i], l = t - off(), top = l % 60 === 0, hc = top ? ' hr0' : '';
+      g.appendChild(el('button', { type: 'button', class: 'tl' + (top ? ' hr' : '') + hc, title: 'Cycle ' + OTL.fmtTime(l) + ' on every day',
+        text: top ? OTL.fmtTime(l) : OTL.fmtTime(l, true),
+        onclick: function () { var any = DAYS.some(function (d) { return st(d, i) === 0; }); DAYS.forEach(function (d) { apply(d, i, any ? 1 : 0); }); render(); } }));
+      DAYS.forEach(function (d) {
+        var bt = el('button', { type: 'button', 'data-d': d, 'data-i': String(i),
+          title: OTL.DLONG[d] + ' ' + OTL.fmtTime(l) + ' \u2014 busy ' + OTL.fmtRange(l - CFG.prep, GAP) });
+        if (top) bt.dataset.h = '1';
+        cells[d + i] = bt; look(bt, d, i);
+        bt.addEventListener('pointerdown', function (e) { painting = { v: (st(d, i) + 1) % 3 }; apply(d, i, painting.v); e.preventDefault(); });
+        bt.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); apply(d, i, (st(d, i) + 1) % 3); render(); } });
+        g.appendChild(bt);
+      });
+      var cov = covLabel(bcsAt(t));
+      g.appendChild(el('div', { class: 'cov' + (cov !== prev ? ' band' : '') + hc, text: cov !== prev ? cov : '' }));
+      prev = cov;
+    });
+    g.addEventListener('pointermove', function (e) {
+      if (!painting) return;
+      var n = document.elementFromPoint(e.clientX, e.clientY);
+      if (n && n.dataset && n.dataset.d && g.contains(n)) apply(n.dataset.d, +n.dataset.i, painting.v);
+    });
+    host.appendChild(g);
+  }
+  window.addEventListener('pointerup', function () { if (painting) { painting = null; render(); } });
+
+  /* ---------- weeks + away dates ---------- */
+  function renderWeeks() {
+    var host = ui.clear($('b-weeks'));
+    [1, 2, 3, 4].forEach(function (w) {
+      var live = DAYS.filter(function (d) { return CFG.retired.indexOf('W' + w + '-' + d) < 0; });
+      host.appendChild(el('div', { class: 'weekrow' }, [
+        el('div', { class: 'lab' }, [el('b', { text: 'Week ' + w }),
+          el('div', { class: 'small muted', text: 'First one falls ' + OTL.fmtDate(OTL.datesFor(CFG, w, live[0])[0]) + '. ' + live.map(function (d) { return OTL.DSHORT[d]; }).join(', ') + '.' })]),
+        ui.seg({ label: 'Week ' + w, get: function () { return +R.weeks[w - 1] ? 1 : 0; },
+          set: function (v) { R.weeks[w - 1] = v; touched(); render(); },
+          options: [{ v: 1, label: 'Works', cls: 'on' }, { v: 0, label: 'Never', cls: 'no' }] })
+      ]));
+    });
+  }
+  function renderAway() {
+    var h = ui.clear($('b-alist'));
+    if (!R.blackouts.length) { h.appendChild(el('span', { class: 'small muted', text: 'Nothing listed yet.' })); return; }
+    R.blackouts.forEach(function (x) {
+      h.appendChild(el('span', { class: 'xchip' }, [OTL.fmtDate(x.d),
+        el('button', { type: 'button', 'aria-label': 'Remove ' + OTL.fmtDate(x.d), text: '×',
+          onclick: function () { R.blackouts = R.blackouts.filter(function (y) { return y.d !== x.d; }); touched(); render(); } })]));
+    });
+  }
+  $('b-add').addEventListener('click', function () {
+    var a = $('b-af').value, b = $('b-at').value || a, m = ui.clear($('b-amsg'));
+    if (!a) { $('b-af').focus(); return; }
+    if (b < a) { m.appendChild(el('div', { class: 'callout err' }, [el('span', { class: 'ic', text: '!' }), el('div', null, [el('b', { class: 't', text: 'Check your dates' }), el('p', { text: 'The second date is before the first.' })])])); return; }
+    var hit = OTL.allDates(CFG).filter(function (x) { return x.iso >= a && x.iso <= b; });
+    if (!hit.length) {
+      m.appendChild(el('div', { class: 'callout ok' }, [el('span', { class: 'ic', text: 'i' }), el('div', null, [el('b', { class: 't', text: 'No sessions fall in there' }),
+        el('p', { text: 'Nothing is scheduled between those dates, so this changes nothing. No need to list it.' })])]));
+      return;
+    }
+    hit.forEach(function (x) { R.blackouts = R.blackouts.filter(function (y) { return y.d !== x.iso; }); R.blackouts.push({ d: x.iso, from: null, to: null }); });
+    R.blackouts.sort(function (p, q) { return p.d < q.d ? -1 : 1; });
+    var days = {}; hit.forEach(function (x) { days[OTL.DLONG[x.d]] = 1; });
+    m.appendChild(el('div', { class: 'callout' }, [el('span', { class: 'ic', text: '!' }), el('div', null, [
+      el('b', { class: 't', text: hit.length + ' session date' + (hit.length === 1 ? '' : 's') + ' blocked' }),
+      el('p', { text: 'That rules you out of ' + Object.keys(days).join(' and ') + ' slots in the weeks affected, for the whole year.' })])]));
+    $('b-af').value = ''; $('b-at').value = '';
+    touched(); render();
+  });
+
+  /* ---------- progress + navigation ---------- */
+  var RAIL = [['Your load', 'How much to take on'], ['When you work', 'Days and times'], ['Blocked', 'Weeks and dates'], ['Review', 'Check and send']];
+  function done(n) {
+    if (n === 1) return !!R.maxDay && !!R.b2bMax;
+    if (n === 2) return DAYS.some(function (d) { return Object.keys(S.best[d]).length || Object.keys(S.never[d]).length; });
+    if (n === 3) return true;
+    return commit && !!R.name && emailOk();
+  }
+  function emailOk() { return /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(($('b-email').value || '').trim()); }
+  function renderRail() {
+    var h = ui.clear($('rail'));
+    RAIL.forEach(function (x, k) {
+      var n = k + 1;
+      h.appendChild(el('button', { type: 'button', class: (step === n ? 'on' : '') + (done(n) && step !== n ? ' ok' : ''),
+        onclick: function () { go(n); } }, [
+        el('span', { class: 'n', text: done(n) && step !== n ? '✓' : String(n) }),
+        el('span', { class: 't' }, [x[0], el('span', { text: x[1] })])]));
+    });
+  }
+  function go(n) {
+    step = n;
+    [1, 2, 3, 4].forEach(function (k) { $('sc' + k).hidden = k !== n; });
+    if (n === 4) renderReview();
+    render();
+    $('sc' + n).scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
+  function touched() { save(); }
+
+  function readouts() {
+    var c = OTL.capacity(CFG, R, R.maxDay);
+    $('r1').innerHTML = R.maxDay && R.b2bMax
+      ? 'Up to <b>' + R.max + ' cohorts</b> means roughly <b>' + Math.ceil(R.max / 4) + ' sessions a week</b>, no more than <b>' + R.maxDay + ' in a day</b>.'
+      : 'Choose your limits to see what that works out to.';
+    var best = 0; DAYS.forEach(function (d) { best += Object.keys(S.best[d]).length; });
+    var nev = 0; DAYS.forEach(function (d) { nev += Object.keys(S.never[d]).length; });
+    $('r2').innerHTML = 'You have room for <b>' + c.room + ' cohorts</b> at the moment' +
+      (best ? ', and you’ve starred <b>' + best + '</b> preferred time' + (best === 1 ? '' : 's') : '') +
+      (nev ? '. <b>' + nev + '</b> time slot' + (nev === 1 ? ' is' : 's are') + ' ruled out' : '') + '.';
+    var weeksOff = R.weeks.filter(function (w) { return !+w; }).length;
+    $('r3').innerHTML = 'After everything you’ve blocked, there’s room for <b>' + c.room + ' cohorts</b>' +
+      (R.blackouts.length ? ' &middot; ' + R.blackouts.length + ' session date' + (R.blackouts.length === 1 ? '' : 's') + ' away' : '') +
+      (weeksOff ? ' &middot; ' + weeksOff + ' week' + (weeksOff === 1 ? '' : 's') + ' ruled out' : '') + '.';
+    var miss = [];
+    if (!R.maxDay || !R.b2bMax) miss.push('your limits in Step 1');
+    if (!($('b-name').value || '').trim()) miss.push('your name');
+    if (!emailOk()) miss.push('your email');
+    if (!commit) miss.push('the commitment tick');
+    $('b-bar').innerHTML = 'Room for <b>' + c.room + '</b> cohorts';
+    $('b-todo').textContent = miss.length ? 'Still needed: ' + miss.join(', ') : 'Ready to send';
+    $('b-todo').className = 'todo' + (miss.length ? '' : ' ready');
+    $('saved').hidden = !(R.name || R.blackouts.length || Object.keys(R.picks || {}).length);
+    return c;
+  }
+  function listPrefs() {
+    var out = [];
+    DAYS.forEach(function (d) {
+      var t = ALLOWED.filter(function (i) { return S.best[d][i]; }).map(function (i) { return OTL.fmtTime(STARTS[i] - off()); });
+      if (t.length) out.push(OTL.DLONG[d] + ' at ' + t.join(', '));
+    });
+    return out;
+  }
+  function listNever() {
+    var out = [];
+    DAYS.forEach(function (d) {
+      var t = ALLOWED.filter(function (i) { return S.never[d][i]; }).map(function (i) { return OTL.fmtTime(STARTS[i] - off()); });
+      if (t.length) out.push(OTL.DLONG[d] + ': ' + t.join(', '));
+    });
+    return out;
+  }
+  function openDays() {
+    return WDS.filter(function (wd) {
+      if (!(+R.weeks[wd.w - 1])) return false;
+      return ALLOWED.some(function (i) { return !S.never[wd.d][i] && !killed(wd, i); });
+    }).map(function (wd) { return 'Week ' + wd.w + ' ' + OTL.DLONG[wd.d]; });
+  }
+  function renderReview() {
+    var c = readouts(), h = ui.clear($('b-rev'));
+    function card(k, v) { h.appendChild(el('div', null, [el('div', { class: 'k', text: k }), el('div', { class: 'v' }, v)])); }
+    card('You can take', [el('b', { text: R.min + ' to ' + R.max + ' cohorts' }), ', at most ' + (R.maxDay || '—') + ' in a day and ' + (R.b2bMax || '—') + ' back to back.']);
+    card('We can offer you', [el('b', { text: c.room + ' slots' }), ' across ' + openDays().length + ' standing days.']);
+    card('You’d prefer', listPrefs().length ? listPrefs().join('; ') : 'No preference — any open time works.');
+    card('You’re never free', listNever().length ? listNever().join('; ') : 'Nothing ruled out.');
+    card('Weeks that never work', R.weeks.filter(function (w) { return !+w; }).length
+      ? R.weeks.map(function (w, k) { return +w ? null : 'Week ' + (k + 1); }).filter(Boolean).join(', ') : 'All four weeks work.');
+    card('Dates you’re away', R.blackouts.length
+      ? R.blackouts.map(function (x) { return OTL.fmtDate(x.d); }).join(', ') : 'None listed.');
+  }
+
+  /* ---------- send: identical payload to Version A ---------- */
+  function send() {
+    if (sending) return;
+    R.name = $('b-name').value.trim(); R.email = $('b-email').value.trim();
+    R.phone = $('b-phone').value.trim(); R.notes = $('b-notes').value.trim(); sync();
+    var errs = [];
+    if (!R.name) errs.push('Add your full name.');
+    if (!emailOk()) errs.push('Add your email address so we can reply.');
+    if (!R.maxDay || !R.b2bMax) errs.push('Choose your limits back in Step 1.');
+    if (!commit) errs.push('Tick the box confirming you can commit to the slots you’ve offered.');
+    var eh = ui.clear($('b-errors'));
+    if (errs.length) {
+      eh.appendChild(el('div', { class: 'note alert' }, [el('b', { text: 'Before you can send this:' }), el('ul', { class: 'errs' }, errs.map(function (t) { return el('li', { text: t }); }))]));
+      eh.scrollIntoView({ block: 'center' }); return;
+    }
+    var now = new Date().toISOString();
+    if (!R.first) R.first = now;
+    R.updated = now; save();
+    var code = OTL.encode(R), c = OTL.capacity(CFG, R, R.maxDay), fd = new FormData();
+    fd.append('_subject', 'OTL 2027 availability — ' + R.name);
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    fd.append('_honey', $('b-honey').value);
+    fd.append('_replyto', R.email);
+    fd.append('Facilitator', R.name);
+    fd.append('Email', R.email);
+    if (R.phone) fd.append('Phone', R.phone);
+    fd.append('Home time zone', OTL.ZNAME[R.tz] + ' (' + R.tz + ')');
+    fd.append('Cohorts wanted', R.min + ' to ' + R.max);
+    fd.append('Most sessions in one day', String(R.maxDay));
+    fd.append('Back-to-back sessions', R.b2bMin + ' to ' + R.b2bMax);
+    fd.append('Preferred arrangement', SHAPE[R.shape] || 'No preference');
+    fd.append('Room for', c.room + ' cohorts');
+    fd.append('Dates away', R.blackouts.length ? R.blackouts.map(function (x) { return OTL.fmtDate(x.d) + ', 2027 — all day'; }).join('\n') : 'None listed');
+    fd.append('Never available', listNever().length ? listNever().join('\n') : 'Nothing blocked — open at every listed start time');
+    fd.append('Weeks of the block', [1, 2, 3, 4].map(function (w) { return 'Week ' + w + ': ' + (+R.weeks[w - 1] ? 'Available' : 'Not available'); }).join('  |  '));
+    fd.append('Preferred times', listPrefs().length ? listPrefs().join('\n') : 'None picked — any open time works');
+    fd.append('Standing days', 'Can commit: ' + (openDays().join(', ') || 'none'));
+    fd.append('Notes', R.notes || '—');
+    fd.append('RESPONSE CODE', code);
+
+    var btns = [$('b-send'), $('b-barbtn')];
+    function reset() { sending = false; btns.forEach(function (b) { b.disabled = false; }); $('b-send').textContent = 'Send my availability'; $('b-barbtn').textContent = 'Review and send'; }
+    function finish(msg) { $('b-code').value = code; $('b-meta').textContent = msg; $('b-result').hidden = false; $('b-result').scrollIntoView({ block: 'center' }); }
+    sending = true;
+    btns.forEach(function (b) { b.disabled = true; ui.clear(b).appendChild(el('span', { class: 'spin' })); b.appendChild(document.createTextNode(' Sending…')); });
+    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (j) {
+        reset();
+        if (j && (j.success === true || j.success === 'true')) finish('Sent ' + new Date().toLocaleString() + ' for ' + R.name + '.');
+        else { finish('Not sent — copy the code and reply to the email that sent you this link.'); }
+      })
+      .catch(function () { reset(); finish('Not sent — copy the code and reply to the email that sent you this link.'); });
+  }
+
+  /* ---------- wiring ---------- */
+  function render() { renderRail(); renderWeeks(); renderAway(); readouts(); if (step === 4) renderReview(); }
+  function readLimits() {
+    function num(id, lo, hi, df) { var v = parseInt($(id).value, 10); return isNaN(v) ? df : Math.max(lo, Math.min(hi, v)); }
+    R.max = num('b-max', 1, CFG.maxCohorts, CFG.maxCohorts);
+    R.min = Math.min(num('b-min', 1, CFG.maxCohorts, CFG.minCohorts), R.max);
+    var md = parseInt($('b-maxday').value, 10), bx = parseInt($('b-b2b').value, 10);
+    R.maxDay = isNaN(md) ? null : Math.max(1, Math.min(CFG.maxPerDay, md));
+    R.b2bMax = isNaN(bx) ? null : Math.min(bx, R.maxDay || 4);
+    R.b2bMin = 1;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    b.addEventListener('click', function () { go(+b.dataset.go); });
+  });
+  ['b-min', 'b-max', 'b-maxday', 'b-b2b'].forEach(function (id) {
+    $(id).addEventListener('change', function () { readLimits(); touched(); render(); });
+  });
+  $('b-tz').addEventListener('change', function () { R.tz = $('b-tz').value; touched(); renderGrid(); render(); });
+  ['b-name', 'b-email', 'b-phone'].forEach(function (id) {
+    $(id).addEventListener('input', function () { R[id.slice(2)] = $(id).value.trim(); touched(); readouts(); });
+  });
+  $('b-notes').addEventListener('change', function () { R.notes = $('b-notes').value.trim(); touched(); });
+  $('b-commit').addEventListener('change', function (e) { commit = e.target.checked; touched(); readouts(); renderRail(); });
+  $('b-send').addEventListener('click', send);
+  $('b-barbtn').addEventListener('click', function () { if (step !== 4) go(4); else send(); });
+  $('b-copy').addEventListener('click', function () { ui.copy($('b-code').value, $('b-copy'), $('b-code')); });
+  $('b-loadbtn').addEventListener('click', function () {
+    var d = OTL.decode($('b-load').value), m = $('b-loadmsg');
+    if (!d.ok) { m.textContent = d.error; return; }
+    adopt(d.resp); fill(); renderGrid(); render();
+    m.textContent = 'Loaded the answers for ' + (R.name || 'this code') + '.';
+  });
+  function fill() {
+    $('b-min').value = R.min; $('b-max').value = R.max;
+    $('b-maxday').value = R.maxDay == null ? '' : R.maxDay;
+    $('b-b2b').value = R.b2bMax == null ? '' : R.b2bMax;
+    $('b-name').value = R.name || ''; $('b-email').value = R.email || '';
+    $('b-phone').value = R.phone || ''; $('b-notes').value = R.notes || '';
+    $('b-tz').value = R.tz; $('b-commit').checked = commit;
+  }
+  fill(); renderGrid(); go(1);
+})();
+</script>
+
+</body>
+</html>
