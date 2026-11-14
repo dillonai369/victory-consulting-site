@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg">
+<title>OTL Backup Sign-Up — On-Call Shifts 2027</title>
+<meta name="description" content="Sign up for on-call backup shifts for OTL Value 1, Sessions 1–4.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Victory Consulting">
+<meta property="og:url" content="https://www.victoryconsulting.com/otl/backup/">
+<meta property="og:title" content="OTL Backup Sign-Up — On-Call Shifts 2027">
+<meta property="og:description" content="Sign up for on-call backup shifts for OTL Value 1, Sessions 1–4.">
+<meta property="og:image" content="https://www.victoryconsulting.com/otl/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one working column on Victory's Off-White ground; Navy carries structure, warm grays carry quiet state, Ember marks only what needs attention. Matches the OTL Scheduler. */
+:root {
+  --bg: #FCFBFA; --surface: #FFFFFF; --ink: #3D3935; --head: #253746; --muted: #746661;
+  --rule: #857874; --rule-soft: #DDD8D5; --tint: #F0EEED; --tint-2: #E4E0DD;
+  --accent: #9A3324; --accent-soft: #F6E9E6; --warn: #8A5E10; --warn-soft: #FAF0DC;
+  --pick-bg: #253746; --pick-fg: #FCFBFA; --gold: #D69A2D; --gold-soft: #FBF3E3; --gold-ink: #131E29;
+  --btn-bg: #253746; --btn-fg: #FCFBFA; --focus: #D69A2D;
+  --logo-light: block; --logo-dark: none;
+  --sans: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131E29; --surface: #1B2937; --ink: #FCFBFA; --head: #FCFBFA; --muted: #C4BCB7;
+    --rule: #6D7A86; --rule-soft: #33424F; --tint: #223140; --tint-2: #2C3C4B;
+    --accent: #E08A78; --accent-soft: #3A2A27; --warn: #D69A2D; --warn-soft: #3A3324;
+    --pick-bg: #FCFBFA; --pick-fg: #131E29; --gold: #D69A2D; --gold-soft: #3A3324; --gold-ink: #131E29;
+    --btn-bg: #FCFBFA; --btn-fg: #131E29; --focus: #D69A2D;
+    --logo-light: none; --logo-dark: block;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131E29; --surface: #1B2937; --ink: #FCFBFA; --head: #FCFBFA; --muted: #C4BCB7;
+  --rule: #6D7A86; --rule-soft: #33424F; --tint: #223140; --tint-2: #2C3C4B;
+  --accent: #E08A78; --accent-soft: #3A2A27; --warn: #D69A2D; --warn-soft: #3A3324;
+  --pick-bg: #FCFBFA; --pick-fg: #131E29; --gold: #D69A2D; --gold-soft: #3A3324; --gold-ink: #131E29;
+  --btn-bg: #FCFBFA; --btn-fg: #131E29; --focus: #D69A2D;
+  --logo-light: none; --logo-dark: block;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.shifts th { white-space: nowrap; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.5; margin: 0; }
+.wrap { max-width: none; margin: 0 auto; padding-left: max(clamp(16px,1.6vw,28px), env(safe-area-inset-left, 0px)); padding-right: max(clamp(16px,1.6vw,28px), env(safe-area-inset-right, 0px)); padding-block: 24px 120px; display: flex; flex-direction: column; gap: 24px; }
+h1, h2, h3 { color: var(--head); margin: 0; text-wrap: balance; line-height: 1.2; }
+h1 { font-size: 30px; font-weight: 800; }
+h2 { font-size: 21px; font-weight: 700; }
+h3 { font-size: 16px; font-weight: 700; }
+p { margin: 0; max-width: 70ch; }
+a { color: var(--head); }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.logo img { height: 34px; width: auto; }
+.logo .l { display: var(--logo-light); } .logo .d { display: var(--logo-dark); }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.stack-lg { display: flex; flex-direction: column; gap: 18px; }
+.row { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; }
+.row > * { min-width: 0; }
+.card-step { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--rule); padding-top: 18px; }
+.step { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+label.field { display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; color: var(--head); }
+label.field .hint { font-weight: 400; color: var(--muted); }
+input[type=text], input[type=email], input[type=tel], input[type=number], select, textarea {
+  font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 7px 9px; max-width: 100%;
+}
+textarea { width: 100%; min-height: 84px; resize: vertical; }
+textarea.code { font-family: var(--mono); font-size: 13px; word-break: break-all; }
+button { font: inherit; cursor: pointer; }
+.btn { background: var(--btn-bg); color: var(--btn-fg); border: 1px solid var(--btn-bg); border-radius: var(--r); padding: 8px 16px; font-weight: 600; }
+.btn.ghost { background: transparent; color: var(--head); border-color: var(--rule); }
+.btn.small { padding: 4px 10px; font-size: 14px; }
+.btn:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.note { background: var(--tint); border: 1px solid var(--rule-soft); border-radius: var(--r); padding: 10px 12px; font-size: 15px; }
+.note.alert { background: var(--accent-soft); border-color: var(--accent); }
+.note.warn { background: var(--warn-soft); border-color: var(--warn); }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--rule); color: var(--head); white-space: nowrap; }
+.pill.alert { border-color: var(--accent); color: var(--accent); }
+.scroll-x { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th { text-align: left; font-weight: 600; color: var(--head); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.facts div { border-left: 3px solid var(--head); padding-left: 10px; font-size: 15px; }
+.facts b { display: block; color: var(--head); font-size: 17px; }
+.due { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; border: 2px solid var(--head); border-radius: var(--r); padding: 8px 14px; background: var(--surface); }
+.due b { color: var(--head); font-size: 18px; }
+
+/* shift table */
+.shifts { width: 100%; font-size: 15px; }
+.shifts th, .shifts td { padding: 8px 10px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; text-align: left; }
+.shifts thead th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.shifts td.et { font-weight: 700; color: var(--head); white-space: nowrap; }
+.shifts td.z { white-space: nowrap; }
+.shifts .home { background: var(--gold-soft); }
+.tag { display: inline-block; min-width: 22px; text-align: center; font-size: 12px; font-weight: 800; padding: 1px 6px; border-radius: 2px; background: var(--pick-bg); color: var(--pick-fg); }
+.tag.b { background: var(--gold); color: var(--gold-ink); }
+
+/* calendar of on-call days */
+.blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 470px), 1fr)); gap: 18px; }
+.blk { border: 1px solid var(--rule-soft); border-radius: var(--r); background: var(--surface); padding: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.blk-h { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; }
+.blk-h h3 { font-size: 17px; }
+.cal { display: grid; grid-template-columns: 52px repeat(3, minmax(0, 1fr)); gap: 5px; }
+.cal .ch { font-size: 12px; font-weight: 700; color: var(--muted); text-align: center; letter-spacing: .06em; text-transform: uppercase; }
+.cal .rh { font-size: 13px; font-weight: 700; color: var(--head); display: flex; align-items: center; }
+.day { border: 1px solid var(--rule-soft); border-radius: var(--r); padding: 5px; display: flex; flex-direction: column; gap: 4px; min-width: 0; background: var(--bg); }
+.day .dt { font-size: 13px; font-weight: 700; color: var(--head); font-variant-numeric: tabular-nums; }
+.day .sh { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.sbtn { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 2px; padding: 4px 0; font-size: 12.5px; font-weight: 600; line-height: 1.15; min-width: 0; }
+.sbtn small { display: block; font-size: 10.5px; font-weight: 400; color: var(--muted); }
+.sbtn[aria-pressed=true] { background: var(--pick-bg); color: var(--pick-fg); border-color: var(--pick-bg); }
+.sbtn[aria-pressed=true] small { color: var(--pick-fg); opacity: .85; }
+.sbtn.b[aria-pressed=true] { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); }
+.sbtn.b[aria-pressed=true] small { color: var(--gold-ink); }
+.day.teach { background: repeating-linear-gradient(135deg, var(--tint-2) 0 4px, var(--surface) 4px 8px); border-style: dashed; }
+.day.teach .why, .day.none .why { font-size: 12px; color: var(--muted); font-weight: 600; text-align: center; padding: 6px 0; }
+.day.none { background: transparent; border-style: dashed; }
+@media (max-width: 520px) { .cal { grid-template-columns: 34px repeat(3, minmax(0, 1fr)); } .cal .rh { font-size: 12px; } .sbtn small { display: none; } }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend i { display: inline-block; width: 18px; height: 12px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--rule-soft); }
+.sendbar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--rule); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); z-index: 5; }
+.sendbar .in { max-width: none; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.sendbar .count { font-size: 15px; }
+.sendbar .count b { color: var(--head); font-size: 18px; font-variant-numeric: tabular-nums; }
+ul.plain { margin: 0; padding-left: 20px; max-width: 70ch; }
+ul.plain li { margin: 3px 0; }
+.copyline { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.copyline code { font-family: var(--mono); font-size: 14px; background: var(--tint); padding: 3px 8px; border-radius: 2px; user-select: all; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="stack-lg">
+    <div class="logo"><img class="l" alt="Victory Consulting" src="/assets/logo-horizontal-color.svg"><img class="d" alt="Victory Consulting" src="/assets/logo-horizontal-reversed.svg"></div>
+    <div class="stack">
+      <div class="eyebrow">OTL Back Up Scheduler · Value 1 · Sessions 1–4</div>
+      <h1>On-call backup sign-up</h1>
+      <p>When a facilitator has an emergency and can't lead their sessions, an on-call backup steps in. We need two backups every delivery day, one for each shift. This first ask covers Value 1 only: Sessions 1–4, the 16 weeks from January 19 to May 6, 2027. Pick every shift you'd be willing to cover. Pick as many as you like.</p>
+      <p>Days you're already teaching are blocked out for you, because no one is on call on a day they facilitate.</p>
+      <div><span class="due">Please send your sign-up by <b id="due"></b></span></div>
+    </div>
+    <div class="facts">
+      <div><b>Two shifts a day</b>Shift 1 and Shift 2 on every Tuesday, Wednesday and Thursday we deliver.</div>
+      <div><b>$200 on-call stipend</b>Paid for each shift you're on call. If you're called in to cover a session, you'll also be paid your standard facilitation fee for that session.</div>
+      <div><b>Lottery if there's extra interest</b>If more people pick a shift than we need, a lottery assigns them. Everyone who signs up gets a shift before anyone gets a second.</div>
+    </div>
+  </header>
+
+  <section class="card-step" aria-labelledby="h-shifts">
+    <h2 id="h-shifts">The two shifts</h2>
+    <p class="small">Times are in Eastern Time. Your home time zone is highlighted once you choose your name.</p>
+    <div class="scroll-x">
+      <table class="shifts">
+        <thead><tr><th>Shift</th><th>Eastern</th><th>Central</th><th>Mountain</th><th>Pacific</th><th>You cover</th></tr></thead>
+        <tbody id="shift-rows"></tbody>
+      </table>
+    </div>
+    <h3>What being on call means</h3>
+    <ul class="plain small">
+      <li>Keep the whole shift free and your phone on. If a facilitator can't make it, Teree or Sarah will call or text you from the OTL Emergency Hotline, <b id="hotline"></b>.</li>
+      <li>Shift 1 starts at 8:00 am ET. If you're contacted before the first session, you'll be asked to go live at 8:00 am ET.</li>
+      <li>If you start a session, you finish it, even if it runs past the end of your shift.</li>
+      <li>Shift 1 and Shift 2 overlap from 12:00 to 4:00 pm ET, so two backups are on call during the busiest hours.</li>
+    </ul>
+  </section>
+
+  <section class="card-step" aria-labelledby="h1a">
+    <div class="step">Step 1</div>
+    <h2 id="h1a">Who you are</h2>
+    <details>
+      <summary class="small">Already sent a sign-up and need to change it?</summary>
+      <div class="stack" style="margin-top:10px">
+        <textarea id="load-code" class="code" placeholder="Paste the sign-up code you were given" aria-label="Earlier sign-up code"></textarea>
+        <div class="row"><button type="button" class="btn ghost" id="load-btn">Load my earlier sign-up</button><span id="load-msg" class="small" role="status"></span></div>
+      </div>
+    </details>
+    <div class="row">
+      <label class="field" style="flex:1 1 240px">Your name
+        <select id="f-name"><option value="">Choose your name</option></select>
+      </label>
+      <label class="field" id="other-wrap" hidden style="flex:1 1 240px">Your full name
+        <input type="text" id="f-other" autocomplete="name">
+      </label>
+      <label class="field">Home time zone
+        <select id="f-tz"><option value="ET">Eastern</option><option value="CT">Central</option><option value="MT">Mountain</option><option value="PT">Pacific</option></select>
+      </label>
+    </div>
+    <div class="row">
+      <label class="field" style="flex:1 1 220px">Mobile number <span class="hint">The number we'll call or text when you're needed</span>
+        <input type="tel" id="f-phone" autocomplete="tel">
+      </label>
+      <label class="field" style="flex:1 1 220px">Email
+        <input type="email" id="f-email" autocomplete="email">
+      </label>
+    </div>
+    <div id="teach-note"></div>
+  </section>
+
+  <section class="card-step" aria-labelledby="h2a">
+    <div class="step">Step 2</div>
+    <h2 id="h2a">Pick your on-call shifts</h2>
+    <p class="small">Tap a shift to pick it, and tap it again to remove it. You can pick both shifts on the same day, but you'll be assigned at most one shift per day.</p>
+    <div class="row" style="align-items:center">
+      <button type="button" class="btn ghost small" id="all-a">Pick every open Shift 1</button>
+      <button type="button" class="btn ghost small" id="all-b">Pick every open Shift 2</button>
+      <button type="button" class="btn ghost small" id="repeat">Copy my Session 1 picks to Sessions 2–4</button>
+      <button type="button" class="btn ghost small" id="clear">Clear all</button>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--pick-bg)"></i>Shift 1 picked</span>
+      <span><i style="background:var(--gold)"></i>Shift 2 picked</span>
+      <span><i style="background:repeating-linear-gradient(135deg,var(--tint-2) 0 3px,var(--surface) 3px 6px)"></i>You're teaching</span>
+    </div>
+    <div class="blocks" id="blocks"></div>
+  </section>
+
+  <section class="card-step" aria-labelledby="h3a">
+    <div class="step">Step 3</div>
+    <h2 id="h3a">Send your sign-up</h2>
+    <label class="field">Notes for the scheduling team <span class="hint">Optional. For example, a limit on how many shifts you'd like in one month.</span><textarea id="f-notes"></textarea></label>
+    <div id="errors" role="alert"></div>
+    <input type="text" id="f-honey" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div><button type="button" class="btn" id="make-btn">Send my sign-up</button></div>
+    <div id="result" class="stack" hidden>
+      <div class="note" id="result-note"></div>
+      <textarea id="code" class="code" readonly aria-label="Your sign-up code"></textarea>
+      <div class="row"><button type="button" class="btn ghost" id="copy-btn">Copy my code</button><span class="small muted" id="result-meta" role="status"></span></div>
+      <p class="small muted">Keep the code. To change your sign-up later, paste it into Step 1, adjust your picks, and send again.</p>
+    </div>
+  </section>
+</div>
+
+<div class="sendbar"><div class="in">
+  <div class="count" id="bar-count" role="status"></div>
+  <button type="button" class="btn" id="bar-btn">Send my sign-up</button>
+</div></div>
+
+<script>
+/* OTL backup shared logic: on-call calendar, shifts, roster, response codes, lottery. No DOM. */
+(function (root) {
+  'use strict';
+  var B = {};
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var DN = { TUE: 'Tue', WED: 'Wed', THU: 'Thu' };
+  var DOFF = { TUE: 1, WED: 2, THU: 3 };
+  B.DAYS3 = ['TUE', 'WED', 'THU'];
+  B.DN = DN;
+  B.HOTLINE = '800-615-9071';
+  B.DUE = 'Friday, November 20, 2026';
+  B.STIPEND = 200;
+
+  /* Value 1 = Sessions 1-4. Monday of each delivery week, from the OTL 2027 delivery calendar. */
+  B.BLOCKS = [
+    { s: 1, weeks: ['2027-01-18', '2027-01-25', '2027-02-01', '2027-02-08'] },
+    { s: 2, weeks: ['2027-02-15', '2027-02-22', '2027-03-01', '2027-03-08'] },
+    { s: 3, weeks: ['2027-03-15', '2027-03-22', '2027-03-29', '2027-04-05'] },
+    { s: 4, weeks: ['2027-04-12', '2027-04-19', '2027-04-26', '2027-05-03'] }
+  ];
+  B.RETIRED = { 'W2-THU': true };
+
+  /* Shifts are stated in ET; the other zones are derived. */
+  B.SHIFTS = [
+    { k: 'A', name: 'Shift 1', start: 480, end: 960, covers: 'Sessions that start 8:00 am – 2:30 pm ET' },
+    { k: 'B', name: 'Shift 2', start: 720, end: 1200, covers: 'Sessions that start 3:00 pm ET or later' }
+  ];
+  B.ZONES = [['ET', 'Eastern', 0], ['CT', 'Central', 60], ['MT', 'Mountain', 120], ['PT', 'Pacific', 180]];
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  B.fmt = function (t) {
+    t = ((t % 1440) + 1440) % 1440;
+    var h = Math.floor(t / 60), m = t % 60, h12 = h % 12 === 0 ? 12 : h % 12;
+    return h12 + ':' + pad2(m) + ' ' + (h < 12 ? 'am' : 'pm');
+  };
+  B.short = function (t) {
+    t = ((t % 1440) + 1440) % 1440;
+    var h = Math.floor(t / 60), m = t % 60, h12 = h % 12 === 0 ? 12 : h % 12;
+    return h12 + (m ? ':' + pad2(m) : '');
+  };
+  B.range = function (sh, off) { return B.fmt(sh.start - (off || 0)) + ' – ' + B.fmt(sh.end - (off || 0)); };
+
+  function addDays(iso, n) {
+    var p = iso.split('-'), d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + n));
+    return { iso: d.toISOString().slice(0, 10), m: d.getUTCMonth(), d: d.getUTCDate() };
+  }
+  /* 44 on-call days: S1-S4 x weeks 1-4 x Tue/Wed/Thu, minus Week 2 Thursday. */
+  B.days = (function () {
+    var out = [];
+    B.BLOCKS.forEach(function (b) {
+      b.weeks.forEach(function (mon, wi) {
+        B.DAYS3.forEach(function (dk) {
+          var std = 'W' + (wi + 1) + '-' + dk;
+          if (B.RETIRED[std]) return;
+          var x = addDays(mon, DOFF[dk]);
+          out.push({ id: 'S' + b.s + '-' + std, s: b.s, w: wi + 1, dk: dk, std: std, iso: x.iso, label: MON[x.m] + ' ' + x.d, long: DN[dk] + ', ' + MON[x.m] + ' ' + x.d });
+        });
+      });
+    });
+    return out;
+  })();
+  B.dayById = {}; B.days.forEach(function (d) { B.dayById[d.id] = d; });
+  B.slots = []; B.days.forEach(function (d) { B.SHIFTS.forEach(function (sh) { B.slots.push(d.id + '-' + sh.k); }); });
+  B.slotDay = function (slot) { return slot.slice(0, slot.lastIndexOf('-')); };
+  B.slotShift = function (slot) { return slot.slice(slot.lastIndexOf('-') + 1); };
+  B.blockRange = function (s) {
+    var ds = B.days.filter(function (d) { return d.s === s; });
+    return ds[0].label + ' – ' + ds[ds.length - 1].label;
+  };
+
+  B.normName = function (s) { return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); };
+  /* roster: { "Name": { tz: "Eastern", teach: ["W1-TUE", ...] } } — teaching repeats on the same standing day in every session. */
+  B.teachSet = function (roster, name) {
+    var key = B.normName(name), hit = null;
+    Object.keys(roster || {}).forEach(function (n) { if (B.normName(n) === key) hit = roster[n]; });
+    var set = {};
+    if (hit) hit.teach.forEach(function (s) { set[s] = true; });
+    return { found: !!hit, set: set, tz: hit ? hit.tz : null };
+  };
+
+  /* ---------- response codes (same shape as the OTL availability form, prefix OTLB1) ---------- */
+  var A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  function utf8(s) { return Array.prototype.slice.call(new TextEncoder().encode(s)); }
+  function unutf8(b) { return new TextDecoder().decode(new Uint8Array(b)); }
+  function b64e(bytes) {
+    var s = '', i, n;
+    for (i = 0; i < bytes.length; i += 3) {
+      n = (bytes[i] << 16) | ((bytes[i + 1] || 0) << 8) | (bytes[i + 2] || 0);
+      s += A[(n >> 18) & 63] + A[(n >> 12) & 63];
+      if (i + 1 < bytes.length) s += A[(n >> 6) & 63];
+      if (i + 2 < bytes.length) s += A[n & 63];
+    }
+    return s;
+  }
+  function b64d(s) {
+    var out = [], i, c, buf = 0, bits = 0;
+    for (i = 0; i < s.length; i++) {
+      c = A.indexOf(s[i]); if (c < 0) throw new Error('bad');
+      buf = ((buf << 6) | c) & 0xffffff; bits += 6;
+      if (bits >= 8) { bits -= 8; out.push((buf >> bits) & 255); }
+    }
+    return out;
+  }
+  function check(s) {
+    var h = 2166136261, i;
+    for (i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+    return ('0000000' + h.toString(16)).slice(-8);
+  }
+  B.encode = function (resp) { var p = b64e(utf8(JSON.stringify(resp))); return 'OTLB1.' + p + '.' + check(p); };
+  B.decode = function (code) {
+    var m = /OTLB1\.([A-Za-z0-9_-]+)\.([0-9a-f]{8})/.exec(String(code || '').replace(/\s+/g, ''));
+    if (!m) return { ok: false, error: 'This does not look like a backup sign-up code. It should start with OTLB1.' };
+    if (check(m[1]) !== m[2]) return { ok: false, error: 'This code is incomplete. It may have been cut off when it was copied.' };
+    try {
+      var r = JSON.parse(unutf8(b64d(m[1])));
+      if (!r || !r.name || !Array.isArray(r.picks)) throw new Error('shape');
+      return { ok: true, resp: r };
+    } catch (e) { return { ok: false, error: 'This code could not be read. It may have been changed when it was copied.' }; }
+  };
+  B.findCodes = function (text) {
+    return String(text || '').replace(/(^|\n)[ \t]*(>[ \t]*)+/g, '$1').replace(/\s+/g, '').match(/OTLB1\.[A-Za-z0-9_-]+\.[0-9a-f]{8}/g) || [];
+  };
+
+  /* ---------- lottery ---------- */
+  function rng(seed) {
+    var a = (seed >>> 0) || 1;
+    return function () { a |= 0; a = (a + 0x6D2B79F5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+  function shuffle(arr, r) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
+  /*
+    people: [{ name, picks: [slot...] }] with teaching-day picks already removed.
+    Rounds: every person still in play is drawn in a fresh random order and given one open shift from their picks.
+    Within a person's turn, the open shift with the fewest other people wanting it is taken first, so scarce days fill.
+    One shift per person per day. Two backups per day (one per shift).
+  */
+  B.lottery = function (people, seed) {
+    var r = rng(seed), assign = {}, byPerson = {}, daysTaken = {}, rounds = 0;
+    var want = {};
+    people.forEach(function (p) { byPerson[p.name] = []; daysTaken[p.name] = {}; p.picks.forEach(function (s) { want[s] = (want[s] || 0) + 1; }); });
+    var active = people.slice();
+    while (active.length) {
+      rounds++;
+      var order = shuffle(active.slice(), r), next = [];
+      order.forEach(function (p) {
+        var open = p.picks.filter(function (s) { return !assign[s] && !daysTaken[p.name][B.slotDay(s)]; });
+        if (!open.length) return;
+        var tie = {}; open.forEach(function (s) { tie[s] = r(); });
+        open.sort(function (a, b) { return (want[a] - want[b]) || (tie[a] - tie[b]); });
+        var s = open[0];
+        assign[s] = p.name; byPerson[p.name].push(s); daysTaken[p.name][B.slotDay(s)] = true;
+        next.push(p);
+      });
+      // recount demand from what is still open, for the next round
+      want = {};
+      next.forEach(function (p) { p.picks.forEach(function (s) { if (!assign[s] && !daysTaken[p.name][B.slotDay(s)]) want[s] = (want[s] || 0) + 1; }); });
+      active = next;
+    }
+    var open = B.slots.filter(function (s) { return !assign[s]; });
+    return { assign: assign, byPerson: byPerson, open: open, rounds: rounds - 1, seed: seed };
+  };
+
+  root.BK = B;
+})(window);
+
+</script>
+<script>
+(function () {
+  'use strict';
+  var BK = window.BK, ROSTER = {"Archana Bharathan": {"tz": "Eastern", "teach": ["W1-TUE", "W1-WED", "W2-TUE", "W2-WED", "W3-TUE", "W3-WED", "W4-TUE", "W4-WED"]}, "Ashley Anders": {"tz": "Eastern", "teach": ["W1-THU", "W4-THU"]}, "Carolyn Ferguson": {"tz": "Central", "teach": ["W2-WED", "W3-TUE", "W3-WED", "W4-WED"]}, "Chad Patterson": {"tz": "Central", "teach": ["W1-TUE", "W2-TUE", "W3-TUE", "W4-TUE"]}, "David Waggoner": {"tz": "Mountain", "teach": ["W1-TUE", "W2-TUE", "W3-TUE", "W4-TUE"]}, "Desiree Cocroft": {"tz": "Eastern", "teach": ["W1-THU", "W1-TUE", "W1-WED", "W3-TUE", "W3-WED"]}, "Eileen Godinez": {"tz": "Eastern", "teach": ["W1-THU", "W1-TUE", "W1-WED"]}, "Emma Flack": {"tz": "Eastern", "teach": ["W3-THU", "W3-TUE", "W3-WED"]}, "Erin Van Galder": {"tz": "Mountain", "teach": ["W1-THU", "W1-TUE", "W1-WED", "W2-TUE", "W2-WED", "W3-THU", "W3-TUE", "W3-WED", "W4-THU", "W4-TUE", "W4-WED"]}, "Jennifer Pasquale": {"tz": "Eastern", "teach": ["W1-TUE", "W1-WED", "W3-TUE", "W3-WED", "W4-WED"]}, "Joe Tabers": {"tz": "Eastern", "teach": ["W1-TUE", "W1-WED", "W2-TUE", "W3-THU", "W3-TUE", "W3-WED"]}, "Kelly Landes": {"tz": "Eastern", "teach": ["W1-THU", "W1-TUE", "W1-WED", "W2-TUE", "W2-WED"]}, "Laura Dellinger": {"tz": "Pacific", "teach": ["W1-THU", "W1-WED", "W3-THU", "W4-THU"]}, "Lauren Zulli": {"tz": "Pacific", "teach": ["W1-THU", "W1-TUE", "W1-WED", "W2-TUE", "W2-WED", "W4-THU", "W4-TUE", "W4-WED"]}, "Nausheen Farishta": {"tz": "Central", "teach": ["W3-THU", "W3-TUE", "W3-WED", "W4-TUE", "W4-WED"]}, "Ravi Rajaratnam": {"tz": "Pacific", "teach": ["W1-TUE", "W1-WED", "W2-TUE", "W2-WED", "W3-TUE", "W3-WED"]}, "Ryan Kim": {"tz": "Eastern", "teach": ["W1-WED", "W4-THU", "W4-TUE", "W4-WED"]}, "Sarah Warren": {"tz": "Central", "teach": ["W1-TUE", "W2-TUE", "W2-WED", "W3-THU", "W3-TUE", "W3-WED", "W4-THU", "W4-TUE", "W4-WED"]}, "Saran Traore": {"tz": "Eastern", "teach": ["W1-THU", "W1-TUE", "W1-WED", "W2-TUE", "W2-WED", "W3-THU", "W3-TUE", "W3-WED", "W4-TUE", "W4-WED"]}, "Stephanie Staidle": {"tz": "Pacific", "teach": ["W2-WED", "W3-THU", "W3-TUE", "W3-WED", "W4-THU", "W4-TUE", "W4-WED"]}, "Vaishali Jadhav": {"tz": "Central", "teach": ["W2-TUE", "W4-THU", "W4-TUE"]}};
+  var TZ = { Eastern: 'ET', Central: 'CT', Mountain: 'MT', Pacific: 'PT' };
+  var $ = function (id) { return document.getElementById(id); };
+  var st = { name: '', other: '', tz: 'ET', phone: '', email: '', notes: '', picks: {} };
+  var KEY = 'otl-backup-signup-v1';
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  function load() { try { var s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.picks) st = Object.assign(st, s); } catch (e) {} }
+
+  function fullName() { return st.name === '__other' ? st.other.trim() : st.name; }
+  function teach() { return BK.teachSet(ROSTER, fullName()); }
+  function blocked(day) { return !!teach().set[day.std]; }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function renderShifts() {
+    $('shift-rows').innerHTML = BK.SHIFTS.map(function (sh) {
+      var cells = BK.ZONES.map(function (z) {
+        return '<td class="' + (z[0] === 'ET' ? 'et' : 'z') + (z[0] === st.tz ? ' home' : '') + '">' + BK.range(sh, z[2]) + '</td>';
+      }).join('');
+      return '<tr><th><span class="tag' + (sh.k === 'B' ? ' b' : '') + '">' + sh.k.replace('A', '1').replace('B', '2') + '</span> ' + sh.name + '</th>' + cells + '<td>' + sh.covers + '</td></tr>';
+    }).join('');
+  }
+
+  function renderBlocks() {
+    var html = BK.BLOCKS.map(function (b) {
+      var h = '<div class="blk"><div class="blk-h"><h3>Session ' + b.s + '</h3><span class="small muted">' + BK.blockRange(b.s) + '</span></div><div class="cal">';
+      h += '<div></div>' + BK.DAYS3.map(function (d) { return '<div class="ch">' + BK.DN[d] + '</div>'; }).join('');
+      for (var w = 1; w <= 4; w++) {
+        h += '<div class="rh">Wk ' + w + '</div>';
+        BK.DAYS3.forEach(function (dk) {
+          var day = BK.dayById['S' + b.s + '-W' + w + '-' + dk];
+          if (!day) { h += '<div class="day none"><div class="dt">&nbsp;</div><div class="why">No sessions</div></div>'; return; }
+          if (blocked(day)) { h += '<div class="day teach"><div class="dt">' + day.label + '</div><div class="why">You\'re teaching</div></div>'; return; }
+          h += '<div class="day"><div class="dt">' + day.label + '</div><div class="sh">' + BK.SHIFTS.map(function (sh) {
+            var id = day.id + '-' + sh.k, on = !!st.picks[id];
+            return '<button type="button" class="sbtn ' + sh.k.toLowerCase() + '" data-slot="' + id + '" aria-pressed="' + on + '" aria-label="' + sh.name + ', ' + day.long + '">' + (sh.k === 'A' ? 'Shift 1' : 'Shift 2') + '<small>' + BK.short(sh.start) + '–' + BK.short(sh.end) + ' ET</small></button>';
+          }).join('') + '</div></div>';
+        });
+      }
+      return h + '</div></div>';
+    }).join('');
+    $('blocks').innerHTML = html;
+  }
+
+  function cleanPicks() {
+    Object.keys(st.picks).forEach(function (s) { var d = BK.dayById[BK.slotDay(s)]; if (!d || blocked(d) || !st.picks[s]) delete st.picks[s]; });
+  }
+  function count() {
+    var n = 0, days = {};
+    Object.keys(st.picks).forEach(function (s) { if (st.picks[s]) { n++; days[BK.slotDay(s)] = true; } });
+    return { n: n, days: Object.keys(days).length };
+  }
+  function renderCount() {
+    var c = count();
+    $('bar-count').innerHTML = c.n ? '<b>' + c.n + '</b> shift' + (c.n === 1 ? '' : 's') + ' picked on <b>' + c.days + '</b> day' + (c.days === 1 ? '' : 's') : 'No shifts picked yet';
+  }
+  function renderTeach() {
+    var nm = fullName(), t = teach(), el = $('teach-note');
+    if (!nm) { el.innerHTML = ''; return; }
+    if (st.name === '__other') { el.innerHTML = '<div class="note small">Your name isn\'t on the 2027 cohort schedule, so no days are blocked out. If you\'ll be teaching OTL cohorts, choose your name from the list instead.</div>'; return; }
+    var std = Object.keys(t.set);
+    var open = BK.days.filter(function (d) { return !t.set[d.std]; }).length;
+    if (!open) { el.innerHTML = '<div class="note warn small">You\'re teaching on every delivery day in Sessions 1–4, so there are no days for you to be on call. Thank you, and no need to send a sign-up.</div>'; return; }
+    var names = std.sort().map(function (s) { var p = s.split('-'); return 'Week ' + p[0].slice(1) + ' ' + BK.DN[p[1]]; });
+    el.innerHTML = '<div class="note small">You teach on <b>' + (names.join(', ') || 'no days') + '</b> in every session, so those ' + (names.length === 1 ? 'day is' : 'days are') + ' blocked out below. That leaves <b>' + open + '</b> days you could be on call.</div>';
+  }
+  function renderAll() { cleanPicks(); renderShifts(); renderBlocks(); renderTeach(); renderCount(); save(); }
+
+  function fillForm() {
+    $('f-name').value = st.name; $('f-other').value = st.other; $('f-tz').value = st.tz;
+    $('f-phone').value = st.phone; $('f-email').value = st.email; $('f-notes').value = st.notes;
+    $('other-wrap').hidden = st.name !== '__other';
+  }
+
+  /* roster select */
+  var opts = Object.keys(ROSTER).sort(function (a, b) { return a.split(' ').slice(-1)[0].localeCompare(b.split(' ').slice(-1)[0]); });
+  $('f-name').innerHTML = '<option value="">Choose your name</option>' + opts.map(function (n) { return '<option>' + esc(n) + '</option>'; }).join('') + '<option value="__other">My name isn\'t listed</option>';
+  $('due').textContent = BK.DUE; $('hotline').textContent = BK.HOTLINE;
+
+  $('f-name').addEventListener('change', function () {
+    st.name = this.value; $('other-wrap').hidden = st.name !== '__other';
+    var r = ROSTER[st.name]; if (r && TZ[r.tz]) { st.tz = TZ[r.tz]; $('f-tz').value = st.tz; }
+    renderAll();
+  });
+  $('f-other').addEventListener('input', function () { st.other = this.value; save(); });
+  $('f-tz').addEventListener('change', function () { st.tz = this.value; renderShifts(); save(); });
+  ['phone', 'email', 'notes'].forEach(function (k) { $('f-' + k).addEventListener('input', function () { st[k] = this.value; save(); }); });
+
+  $('blocks').addEventListener('click', function (e) {
+    var b = e.target.closest('.sbtn'); if (!b) return;
+    var id = b.dataset.slot, on = !st.picks[id];
+    if (on) st.picks[id] = true; else delete st.picks[id];
+    b.setAttribute('aria-pressed', on); renderCount(); save();
+  });
+  function pickAll(k) { BK.days.forEach(function (d) { if (!blocked(d)) st.picks[d.id + '-' + k] = true; }); renderAll(); }
+  $('all-a').onclick = function () { pickAll('A'); };
+  $('all-b').onclick = function () { pickAll('B'); };
+  $('clear').onclick = function () { st.picks = {}; renderAll(); };
+  $('repeat').onclick = function () {
+    BK.days.forEach(function (d) {
+      if (d.s === 1 || blocked(d)) return;
+      BK.SHIFTS.forEach(function (sh) {
+        var src = 'S1-' + d.std + '-' + sh.k, dst = d.id + '-' + sh.k;
+        if (st.picks[src]) st.picks[dst] = true; else delete st.picks[dst];
+      });
+    });
+    renderAll();
+  };
+
+  /* Submissions go out over AJAX so the page stays put and the facilitator keeps
+     their code. Same delivery path as the availability form: the endpoint hash
+     resolves to Sarah, Kelly is copied. Kelly's address is assembled at runtime so
+     it never sits in the page source. */
+  var ENDPOINT = 'https://formsubmit.co/ajax/a00bfd01970d0055b22d79d36049baca';
+  var sending = false;
+  function pickSummary(picks) {
+    return BK.BLOCKS.map(function (b) {
+      var rows = [];
+      BK.days.forEach(function (d) {
+        if (d.s !== b.s) return;
+        var a = picks.indexOf(d.id + '-A') >= 0, c = picks.indexOf(d.id + '-B') >= 0;
+        if (a || c) rows.push(d.long + ' (' + (a && c ? 'Shift 1 or 2' : a ? 'Shift 1' : 'Shift 2') + ')');
+      });
+      return 'Session ' + b.s + ': ' + (rows.length ? rows.join('; ') : 'none');
+    }).join('\n');
+  }
+  function make() {
+    if (sending) return;
+    var errs = [], nm = fullName(), c = count();
+    if (!nm) errs.push('Choose your name in Step 1.');
+    if (!st.phone.replace(/\D/g, '').match(/\d{10}/)) errs.push('Add a mobile number we can call or text, with area code.');
+    if (st.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(st.email.trim())) errs.push('Check your email address.');
+    if (!c.n) errs.push('Pick at least one shift in Step 2.');
+    if (errs.length) { $('errors').innerHTML = '<div class="note alert"><b>Before you send:</b><ul class="plain">' + errs.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>'; $('errors').scrollIntoView({ block: 'center' }); return; }
+    $('errors').innerHTML = '';
+    var picks = BK.slots.filter(function (s) { return st.picks[s]; });
+    var resp = { v: 1, name: nm, listed: st.name !== '__other', tz: st.tz, phone: st.phone.trim(), email: st.email.trim(), notes: st.notes.trim(), picks: picks, t: new Date().toISOString() };
+    var code = BK.encode(resp), zone = BK.ZONES.filter(function (z) { return z[0] === st.tz; })[0];
+    var nA = picks.filter(function (s) { return BK.slotShift(s) === 'A'; }).length;
+
+    var fd = new FormData(), AT = String.fromCharCode(64);
+    fd.append('_subject', 'OTL backup sign-up — ' + nm);
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    fd.append('_honey', $('f-honey').value);
+    if (resp.email) fd.append('_replyto', resp.email);
+    fd.append('_cc', 'kelly' + AT + 'victoryconsulting.com');
+    fd.append('Facilitator', nm + (resp.listed ? '' : ' (not on the 2027 roster)'));
+    fd.append('Mobile', resp.phone);
+    fd.append('Email', resp.email || '—');
+    fd.append('Home time zone', zone ? zone[1] + ' (' + zone[0] + ')' : st.tz);
+    fd.append('Shifts offered', c.n + ' on ' + c.days + ' day' + (c.days === 1 ? '' : 's') + ' (Shift 1: ' + nA + ', Shift 2: ' + (c.n - nA) + ')');
+    fd.append('Picks', pickSummary(picks));
+    fd.append('Notes', resp.notes || '—');
+    fd.append('SIGN-UP CODE', code);
+
+    var btns = [$('make-btn'), $('bar-btn')];
+    function reset() { sending = false; btns.forEach(function (b) { b.disabled = false; b.textContent = 'Send my sign-up'; }); }
+    function finish(ok) {
+      $('code').value = code;
+      $('result-note').className = 'note' + (ok ? '' : ' alert');
+      $('result-note').innerHTML = ok
+        ? '<b>Your sign-up is in.</b> The scheduling team has your ' + c.n + ' shift' + (c.n === 1 ? '' : 's') + ' on ' + c.days + ' day' + (c.days === 1 ? '' : 's') + '.'
+        : '<b>That didn\u2019t send.</b> Your picks are safe. Copy the code below and reply to the email that sent you this link, and the scheduling team can load it from there.';
+      $('result-meta').textContent = '';
+      $('result').hidden = false; $('result').scrollIntoView({ block: 'center' });
+    }
+    sending = true;
+    btns.forEach(function (b) { b.disabled = true; b.textContent = 'Sending\u2026'; });
+    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (j) { reset(); finish(!!j && (j.success === true || j.success === 'true')); })
+      .catch(function () { reset(); finish(false); });
+  }
+  $('make-btn').onclick = make; $('bar-btn').onclick = make;
+
+  function copy(text, area, done) {
+    try {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { if (area) { area.focus(); area.select(); } done(false); });
+    } catch (e) { if (area) { area.focus(); area.select(); } done(false); }
+  }
+  $('copy-btn').onclick = function () { copy($('code').value, $('code'), function (ok) { $('result-meta').textContent = ok ? 'Copied.' : 'The code is selected. Press Ctrl+C (or Cmd+C) to copy it.'; }); };
+
+  $('load-btn').onclick = function () {
+    var r = BK.decode($('load-code').value);
+    if (!r.ok) { $('load-msg').textContent = r.error; return; }
+    var p = r.resp, listed = Object.prototype.hasOwnProperty.call(ROSTER, p.name);
+    st = { name: listed ? p.name : '__other', other: listed ? '' : p.name, tz: p.tz || 'ET', phone: p.phone || '', email: p.email || '', notes: p.notes || '', picks: {} };
+    p.picks.forEach(function (s) { st.picks[s] = true; });
+    fillForm(); renderAll();
+    $('load-msg').textContent = 'Loaded ' + p.picks.length + ' shifts for ' + p.name + '.';
+  };
+
+  load(); fillForm(); renderAll();
+})();
+</script>
+
+</body>
+</html>
