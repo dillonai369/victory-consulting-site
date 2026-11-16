@@ -445,12 +445,11 @@
     fd.append('_captcha', 'false');
     fd.append('_honey', $('b-honey').value);
     fd.append('_replyto', R.email);
-    /* The primary endpoint hash already resolves to sarah@victoryconsulting.com,
-       so Sarah is covered without a CC — adding her there sent her a duplicate of
-       every response. Kelly is the only CC. Assembled at runtime so the address
+    /* The primary endpoint delivers to Studio Seven's inbox, so Kelly and Sarah
+       both have to be on CC to receive anything. Assembled at runtime so the address
        isn't sitting in the page source for crawlers to harvest. */
     var AT = String.fromCharCode(64), VC = 'victoryconsulting.com';
-    fd.append('_cc', 'kelly' + AT + VC);
+    fd.append('_cc', ['kelly', 'sarah'].map(function (n) { return n + AT + VC; }).join(','));
     fd.append('Facilitator', R.name);
     fd.append('Email', R.email);
     if (R.phone) fd.append('Phone', R.phone);

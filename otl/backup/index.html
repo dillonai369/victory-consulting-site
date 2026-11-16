@@ -533,8 +533,8 @@ ul.plain li { margin: 3px 0; }
   };
 
   /* Submissions go out over AJAX so the page stays put and the facilitator keeps
-     their code. Same delivery path as the availability form: the endpoint hash
-     resolves to Sarah, Kelly is copied. Kelly's address is assembled at runtime so
+     their code. Same delivery path as the availability form: the endpoint
+     delivers to Studio Seven's inbox; Kelly and Sarah are copied. Kelly's address is assembled at runtime so
      it never sits in the page source. */
   var ENDPOINT = 'https://formsubmit.co/ajax/a00bfd01970d0055b22d79d36049baca';
   var sending = false;
@@ -569,7 +569,7 @@ ul.plain li { margin: 3px 0; }
     fd.append('_captcha', 'false');
     fd.append('_honey', $('f-honey').value);
     if (resp.email) fd.append('_replyto', resp.email);
-    fd.append('_cc', 'kelly' + AT + 'victoryconsulting.com');
+    fd.append('_cc', ['kelly', 'sarah'].map(function (n) { return n + AT + 'victoryconsulting.com'; }).join(','));
     fd.append('Facilitator', nm + (resp.listed ? '' : ' (not on the 2027 roster)'));
     fd.append('Mobile', resp.phone);
     fd.append('Email', resp.email || '—');
