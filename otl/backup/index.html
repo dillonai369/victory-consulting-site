@@ -579,23 +579,24 @@ ul.plain li { margin: 3px 0; }
     fd.append('Notes', resp.notes || '—');
     fd.append('SIGN-UP CODE', code);
 
-    var btns = [$('make-btn'), $('bar-btn')];
-    function reset() { sending = false; btns.forEach(function (b) { b.disabled = false; b.textContent = 'Send my sign-up'; }); }
+    /* Thank them straight away. The delivery service can take a minute to answer,
+       so the send finishes in the background (keepalive lets it complete even if
+       they close the tab). If it does fail, the message switches to the fallback. */
     function finish(ok) {
       $('code').value = code;
       $('result-note').className = 'note' + (ok ? '' : ' alert');
       $('result-note').innerHTML = ok
-        ? '<b>Your sign-up is in.</b> The scheduling team has your ' + c.n + ' shift' + (c.n === 1 ? '' : 's') + ' on ' + c.days + ' day' + (c.days === 1 ? '' : 's') + '.'
+        ? '<b>Thank you for submitting.</b> Your sign-up is in: ' + c.n + ' shift' + (c.n === 1 ? '' : 's') + ' on ' + c.days + ' day' + (c.days === 1 ? '' : 's') + '.'
         : '<b>That didn\u2019t send.</b> Your picks are safe. Copy the code below and reply to the email that sent you this link, and the scheduling team can load it from there.';
       $('result-meta').textContent = '';
-      $('result').hidden = false; $('result').scrollIntoView({ block: 'center' });
+      $('result').hidden = false;
     }
     sending = true;
-    btns.forEach(function (b) { b.disabled = true; b.textContent = 'Sending\u2026'; });
-    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+    finish(true); $('result').scrollIntoView({ block: 'center' });
+    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' }, keepalive: true })
       .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
-      .then(function (j) { reset(); finish(!!j && (j.success === true || j.success === 'true')); })
-      .catch(function () { reset(); finish(false); });
+      .then(function (j) { sending = false; if (!(j && (j.success === true || j.success === 'true'))) finish(false); })
+      .catch(function () { sending = false; finish(false); });
   }
   $('make-btn').onclick = make; $('bar-btn').onclick = make;
 

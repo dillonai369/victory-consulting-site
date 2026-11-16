@@ -467,19 +467,14 @@
     fd.append('Notes', R.notes || '—');
     fd.append('RESPONSE CODE', code);
 
-    var btns = [$('b-send'), $('b-barbtn')];
-    function reset() { sending = false; btns.forEach(function (b) { b.disabled = false; }); $('b-send').textContent = 'Send my availability'; $('b-barbtn').textContent = 'Review and send'; }
     function finish(msg) { $('b-code').value = code; $('b-meta').textContent = msg; $('b-result').hidden = false; $('b-result').scrollIntoView({ block: 'center' }); }
+    var notSent = 'Not sent \u2014 copy the code and reply to the email that sent you this link.';
     sending = true;
-    btns.forEach(function (b) { b.disabled = true; ui.clear(b).appendChild(el('span', { class: 'spin' })); b.appendChild(document.createTextNode(' Sending…')); });
-    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+    finish('Thank you for submitting, ' + R.name + '.');
+    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' }, keepalive: true })
       .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
-      .then(function (j) {
-        reset();
-        if (j && (j.success === true || j.success === 'true')) finish('Sent ' + new Date().toLocaleString() + ' for ' + R.name + '.');
-        else { finish('Not sent — copy the code and reply to the email that sent you this link.'); }
-      })
-      .catch(function () { reset(); finish('Not sent — copy the code and reply to the email that sent you this link.'); });
+      .then(function (j) { sending = false; if (!(j && (j.success === true || j.success === 'true'))) finish(notSent); })
+      .catch(function () { sending = false; finish(notSent); });
   }
 
   /* ---------- wiring ---------- */

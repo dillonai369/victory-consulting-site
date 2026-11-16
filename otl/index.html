@@ -754,20 +754,14 @@
           el('p', { text: why + ' Your answers are safe. Copy the code below and reply to the email that sent you this link — the scheduling team can load it from there.' })])]));
       finish('Not sent — please copy the code and reply to the email that sent you this link.');
     }
-    function reset() { sending = false; btns.forEach(function (b) { b.disabled = false; b.textContent = 'Send my availability'; }); }
-    var btns = [$('make-btn'), $('bar-btn')];
+    /* Thank them straight away; the delivery service can take a minute to answer,
+       so the send finishes in the background and only a failure changes the message. */
     sending = true;
-    btns.forEach(function (b) { b.disabled = true; ui.clear(b).appendChild(el('span', { class: 'spin' })); b.appendChild(document.createTextNode(' Sending…')); });
-
-    if (!configured()) { reset(); failed('The form isn’t connected yet.'); return; }
-    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+    finish('Thank you for submitting, ' + R.name + '.');
+    fetch(ENDPOINT, { method: 'POST', body: fd, headers: { Accept: 'application/json' }, keepalive: true })
       .then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
-      .then(function (j) {
-        reset();
-        if (j && (j.success === true || j.success === 'true')) finish('Sent ' + new Date().toLocaleString() + ' for ' + R.name + '.');
-        else failed('The scheduling inbox didn’t accept it.');
-      })
-      .catch(function () { reset(); failed('We couldn’t reach the server.'); });
+      .then(function (j) { sending = false; if (!(j && (j.success === true || j.success === 'true'))) failed('The scheduling inbox didn\u2019t accept it.'); })
+      .catch(function () { sending = false; failed('We couldn\u2019t reach the server.'); });
   }
 
   /* ---------- wiring ---------- */
